@@ -4,25 +4,24 @@
       <i class="flaticon2-drop"></i>
     </a>
   </li>
-  <li class="nav-item mb-2" data-toggle="tooltip" title="Layout Builder" data-placement="left">
-    <a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="https://keenthemes.com/metronic/preview/demo1/builder.html" target="_blank">
-      <i class="flaticon2-gear"></i>
+  <li class="nav-item mb-2" data-toggle="tooltip" title="Whatsapp" data-placement="left">
+    <a class="btn btn-sm btn-icon btn-bg-light btn-icon-success btn-hover-success" href="https://wa.me/{{ env('CONTACT_PHONE') }}/" target="_blank">
+      <i class="fab fa-whatsapp"></i>
     </a>
   </li>
   <li class="nav-item mb-2" data-toggle="tooltip" title="Documentation" data-placement="left">
     <a class="btn btn-sm btn-icon btn-bg-light btn-icon-warning btn-hover-warning" href="https://keenthemes.com/metronic/?page=docs" target="_blank">
-      <i class="flaticon2-telegram-logo"></i>
+      <i class="fas fa-book-open"></i>
     </a>
   </li>
-  <li class="nav-item" id="kt_sticky_toolbar_chat_toggler" data-toggle="tooltip" title="Chat Example" data-placement="left">
+  <li class="nav-item" data-toggle="tooltip" title="Application Version {{ env('APP_VERSION') }}" data-placement="left">
     <a class="btn btn-sm btn-icon btn-bg-light btn-icon-danger btn-hover-danger" href="#" data-toggle="modal" data-target="#kt_chat_modal">
-      <i class="flaticon2-chat-1"></i>
+      <i class="fas fa-info-circle"></i>
     </a>
   </li>
 </ul>
 
 <div id="kt_demo_panel" class="offcanvas offcanvas-right p-10">
-  <!--begin::Header-->
   <div class="offcanvas-header d-flex align-items-center justify-content-between pb-7">
     <h4 class="font-weight-bold m-0"> BOARD PANEL </h4>
     <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_demo_panel_close">
