@@ -10,12 +10,12 @@
     </a>
   </li>
   <li class="nav-item mb-2" data-toggle="tooltip" title="Documentation" data-placement="left">
-    <a class="btn btn-sm btn-icon btn-bg-light btn-icon-warning btn-hover-warning" href="https://keenthemes.com/metronic/?page=docs" target="_blank">
+    <a class="btn btn-sm btn-icon btn-bg-light btn-icon-warning btn-hover-warning" href="/dashboard/documentation" target="_blank">
       <i class="fas fa-book-open"></i>
     </a>
   </li>
   <li class="nav-item" data-toggle="tooltip" title="Application Version {{ env('APP_VERSION') }}" data-placement="left">
-    <a class="btn btn-sm btn-icon btn-bg-light btn-icon-danger btn-hover-danger" href="#" data-toggle="modal" data-target="#kt_chat_modal">
+    <a class="btn btn-sm btn-icon btn-bg-light btn-icon-danger btn-hover-danger">
       <i class="fas fa-info-circle"></i>
     </a>
   </li>

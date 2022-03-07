@@ -12,16 +12,11 @@
   <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
     <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
       <ul class="menu-nav">
+
         <li class="menu-item {{ (request()->is('dashboard')) ? 'menu-item-active' : '' }}">
           <a class="menu-link" onclick="location.href='/dashboard';">
             <i class="menu-icon fas fa-desktop"></i>
             <span class="menu-text"> Dashboard </span>
-          </a>
-        </li>
-        <li class="menu-item {{ (request()->is('dashboard/file-manager*')) ? 'menu-item-active' : '' }}">
-          <a class="menu-link" onclick="location.href='/dashboard/file-manager';">
-            <i class="menu-icon fas fa-hdd"></i>
-            <span class="menu-text"> File Manager </span>
           </a>
         </li>
         <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}">
@@ -30,12 +25,30 @@
             <span class="menu-text"> Messages </span>
           </a>
         </li>
+
+        <li class="menu-section">
+          <h5 class="menu-text"> EXTENSIONS </h5>
+          <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+        </li>
+        <li class="menu-item {{ (request()->is('dashboard/documentation*')) ? 'menu-item-active' : '' }}">
+          <a class="menu-link" onclick="location.href='/dashboard/documentation';">
+            <i class="menu-icon fas fa-book-open"></i>
+            <span class="menu-text"> Documentation </span>
+          </a>
+        </li>
+        <li class="menu-item {{ (request()->is('dashboard/file-manager*')) ? 'menu-item-active' : '' }}">
+          <a class="menu-link" onclick="location.href='/dashboard/file-manager';">
+            <i class="menu-icon fas fa-hdd"></i>
+            <span class="menu-text"> File Manager </span>
+          </a>
+        </li>
         <li class="menu-item {{ (request()->is('dashboard/statistics*')) ? 'menu-item-active' : '' }}">
           <a class="menu-link" onclick="location.href='/dashboard/statistics';">
             <i class="menu-icon fas fa-bug"></i>
             <span class="menu-text"> Statistics </span>
           </a>
         </li>
+
         <li class="menu-section">
           <h5 class="menu-text"> Dummies </h5>
           <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
