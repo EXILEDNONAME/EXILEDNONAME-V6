@@ -18,19 +18,19 @@
             <span class="menu-text"> Dashboard </span>
           </a>
         </li>
-        <li class="menu-item {{ (request()->is('dashboard/file-manager')) ? 'menu-item-active' : '' }}">
+        <li class="menu-item {{ (request()->is('dashboard/file-manager*')) ? 'menu-item-active' : '' }}">
           <a class="menu-link" onclick="location.href='/dashboard/file-manager';">
             <i class="menu-icon fas fa-hdd"></i>
             <span class="menu-text"> File Manager </span>
           </a>
         </li>
-        <li class="menu-item {{ (request()->is('dashboard/messages')) ? 'menu-item-active' : '' }}">
+        <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}">
           <a class="menu-link" onclick="location.href='/dashboard/messages';">
             <i class="menu-icon fas fa-inbox"></i>
             <span class="menu-text"> Messages </span>
           </a>
         </li>
-        <li class="menu-item {{ (request()->is('dashboard/statistics')) ? 'menu-item-active' : '' }}">
+        <li class="menu-item {{ (request()->is('dashboard/statistics*')) ? 'menu-item-active' : '' }}">
           <a class="menu-link" onclick="location.href='/dashboard/statistics';">
             <i class="menu-icon fas fa-bug"></i>
             <span class="menu-text"> Statistics </span>
