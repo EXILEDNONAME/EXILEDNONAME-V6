@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use Auth;
 use App\Http\Controllers\Controller;
@@ -29,6 +29,17 @@ class DashboardController extends Controller {
   public function logout() {
     Auth::logout();
     return redirect('login');
+  }
+
+  /**
+  **************************************************
+  * @return Language-Switch
+  **************************************************
+  **/
+
+  public function language($language = '') {
+      request()->session()->put('locale', $language);
+      return redirect()->back();
   }
 
   public function template() {
