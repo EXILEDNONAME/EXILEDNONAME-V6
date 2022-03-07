@@ -33,7 +33,7 @@ class DashboardController extends Controller {
 
   /**
   **************************************************
-  * @return Language-Switch
+  * @return Language-Switcher
   **************************************************
   **/
 
