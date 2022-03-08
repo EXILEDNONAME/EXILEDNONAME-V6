@@ -91,7 +91,7 @@
         </div>
       </div>
     </div>
-    <script> var HOST_URL = "https://keenthemes.com/metronic/tools/preview"; </script>
+
     <script>
     var KTAppSettings = {
       "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1400 },
@@ -102,12 +102,13 @@
           "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#3F4254", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" }
         },
         "gray": { "gray-100": "#F3F6F9", "gray-200": "#EBEDF3", "gray-300": "#E4E6EF", "gray-400": "#D1D3E0", "gray-500": "#B5B5C3", "gray-600": "#7E8299", "gray-700": "#5E6278", "gray-800": "#3F4254", "gray-900": "#181C32" }
-        }, "font-family": "Poppins" };
-      </script>
+      }, "font-family": "Poppins"
+    };
+    </script>
 
     <script src="/assets/backend/plugins/global/plugins.bundle.js?v=7.0.5"></script>
     <script src="/assets/backend/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.5"></script>
     <script src="/assets/backend/js/scripts.bundle.js?v=7.0.5"></script>
-    <script src="/assets/backend/js/pages/custom/login/login-general.js?v=7.0.5"></script>
+    
   </body>
   </html>
