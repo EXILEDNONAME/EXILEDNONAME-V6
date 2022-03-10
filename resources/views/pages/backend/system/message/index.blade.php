@@ -1,6 +1,6 @@
 @extends('layouts.default', ['page' => 'blank'])
-@push('title', 'Dashboard')
+@push('title', 'Messages')
 
 @push('body')
-Dashboard
+Message
 @endpush

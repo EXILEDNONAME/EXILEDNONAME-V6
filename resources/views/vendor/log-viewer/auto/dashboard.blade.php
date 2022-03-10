@@ -194,40 +194,21 @@
         </div>
       </div>
       <div class="card-body">
+
         <div class="row">
-          <div class="col-xl-12">
-            <section class="box-body">
-              <div class="row">
-                @foreach($percents as $level => $item)
-                <div class="col-md-4">
-                  <div class="card card-custom wave mb-5">
-											<div class="card-body">
-												<div class="d-flex align-items-center">
-													<div class="mr-10">
-                            <span class="info-box-icon">
-                              {{ log_styler()->icon($level) }}
-                            </span>
-													</div>
-													<div class="d-flex flex-column">
-														<a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h4">
-                              {{ $item['name'] }}
-                              <hr>
-                            </a>
-														<div class="text-dark-75">
-                              {{ $item['count'] }} items - {!! $item['percent'] !!} %
-                            </div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-
-                </div>
-                @endforeach
+          @foreach($percents as $level => $item)
+          <div class="col-lg-4">
+            <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url(/assets/backend/media/svg/shapes/abstract-4.svg)">
+              <div class="card-body" style="">
+                <center>
+                  {{ log_styler()->icon($level) }} <hr>
+                  <a href="{{ URL::Current() }}/#" class="text-info"><b> {{ $item['name'] }} </b></a><br>
+                  <span class="text-dark"> [{{ $item['count'] }}] - {!! $item['percent'] !!}% </span>
+                </center>
               </div>
-            </section>
-            <hr>
+            </div>
           </div>
+          @endforeach
         </div>
       </div>
     </div>

@@ -16,8 +16,20 @@ class DashboardController extends Controller {
       return view('pages.backend.system.dashboard.index');
   }
 
+  public function documentation() {
+      return view('pages.backend.system.documentation.index');
+  }
+
   public function file_manager() {
       return view('pages.backend.system.file-manager.index');
+  }
+
+  public function message() {
+      return view('pages.backend.system.message.index');
+  }
+
+  public function profile() {
+      return view('pages.backend.system.profile.index');
   }
 
   /**

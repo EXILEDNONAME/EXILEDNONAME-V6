@@ -14,12 +14,22 @@ Route::group([
   Route::get('/file-manager', 'DashboardController@file_manager')->name('file-manager');
   Route::get('/language/{language}', 'DashboardController@language')->name('language');
   Route::get('/logout', 'DashboardController@logout')->name('logout');
+  Route::get('/messages', 'DashboardController@message')->name('message');
   Route::get('/profile', 'DashboardController@profile')->name('profile');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group([
+  'as' => 'dashboard.dummy.',
+  'prefix' => 'dashboard/dummy',
+  'namespace' => 'Backend',
+], function(){
+  Route::get('/', 'SystemController@index')->name('index');
+  Route::get('/tables', 'SystemController@table')->name('tables');
+});
 
 // DUMMY - TABLE GENERALS
 Route::group([

@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('/packages/barryvdh/elfinder/css/theme.css') }}">
 @endpush
 
-@push('content')
+@push('body')
 <div id="elfinder"></div>
 @endpush
 
