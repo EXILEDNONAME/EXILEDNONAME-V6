@@ -53,8 +53,8 @@
           <h5 class="menu-text"> Dummies </h5>
           <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
         </li>
-        <li class="menu-item {{ (request()->is('dashboard/tables*')) ? 'menu-item-submenu menu-item-here menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
-          <a href="javascript:;" class="menu-link menu-toggle">
+        <li class="menu-item {{ (request()->is('dashboard/dummy/tables*')) ? 'menu-item-submenu menu-item-here menu-item-open' : '' }}" aria-haspopup="true" data-menu-toggle="hover">
+          <a class="menu-link menu-toggle">
             <i class="menu-icon fas fa-table"></i>
             <span class="menu-text"> Tables </span>
             <i class="menu-arrow"></i>
@@ -62,14 +62,14 @@
           <div class="menu-submenu" style="">
             <i class="menu-arrow"></i>
             <ul class="menu-subnav">
-              <li class="menu-item {{ (request()->is('dashboard/tables/generals*')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                <a class="menu-link" onclick="location.href='/dashboard/tables/generals';">
+              <li class="menu-item {{ (request()->is('dashboard/dummy/tables/generals*')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a class="menu-link" onclick="location.href='/dashboard/dummy/tables/generals';">
                   <i class="menu-bullet menu-bullet-dot"><span></span></i>
                   <span class="menu-text"> Generals </span>
                 </a>
               </li>
-              <li class="menu-item {{ (request()->is('dashboard/tables/relations*')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                <a class="menu-link" onclick="location.href='/dashboard/tables/relations';">
+              <li class="menu-item {{ (request()->is('dashboard/dummy/tables/relations*')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                <a class="menu-link" onclick="location.href='/dashboard/dummy/tables/relations';">
                   <i class="menu-bullet menu-bullet-dot"><span></span></i>
                   <span class="menu-text"> Relations </span>
                 </a>

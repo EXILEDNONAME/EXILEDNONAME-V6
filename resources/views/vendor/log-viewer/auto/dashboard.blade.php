@@ -1,73 +1,6 @@
 @extends('layouts.default', ['page' => 'blank'])
 @push('title', 'Statistics')
 
-@push('content')
-<div class="row">
-  <div class="col-xl-12">
-    <div class="card card-custom gutter-b card-sticky" data-card="true" id="kt_page_sticky_card">
-      <div class="card-header">
-        <div class="card-title">
-          <h3 class="text-dark font-weight-bold"> @stack('title') </h3>
-        </div>
-        <div class="card-toolbar">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link {{ (request()->is('dashboard/statistics')) ? 'active' : '' }}" href="/dashboard/statistics">
-                <span class="nav-icon">
-                  <i class="flaticon2-chat-1"></i>
-                </span>
-                <span class="nav-text"> Main </span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {{ (request()->is('dashboard/statistics/logs*')) ? 'active' : '' }}" href="/dashboard/statistics/logs">
-                <span class="nav-icon">
-                  <i class="flaticon2-layers-1"></i>
-                </span>
-                <span class="nav-text"> Logs </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-xl-3">
-            <canvas id="stats-doughnut-chart" height="300"></canvas>
-          </div>
-          <div class="col-xl-9">
-            <section class="box-body">
-              <div class="row">
-                @foreach($percents as $level => $item)
-                <div class="col-md-4">
-                  <div class="info-box level level-{{ $level }} {{ $item['count'] === 0 ? 'level-empty' : '' }}">
-                    <span class="info-box-icon">
-                      {{ log_styler()->icon($level) }}
-                    </span>
-
-                    <div class="info-box-content">
-                      <span class="info-box-text">{{ $item['name'] }}</span>
-                      <span class="info-box-number">
-                        {{ $item['count'] }} entries - {!! $item['percent'] !!} %
-                      </span>
-                      <div class="progress">
-                        <div class="progress-bar" style="width: {{ $item['percent'] }}%"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                @endforeach
-              </div>
-            </section>
-            <hr>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-@endpush
-
 @push('head')
 <style>
 .info-box.level {
@@ -229,6 +162,77 @@
   background-color: #6A1B9A;
 }
 </style>
+@endpush
+
+@push('body')
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card card-custom gutter-b card-sticky" data-card="true" id="kt_page_sticky_card">
+      <div class="card-header">
+        <div class="card-title">
+          <h3 class="text-dark font-weight-bold"> @stack('title') </h3>
+        </div>
+        <div class="card-toolbar">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link {{ (request()->is('dashboard/statistics')) ? 'active' : '' }}" href="/dashboard/statistics">
+                <span class="nav-icon">
+                  <i class="flaticon2-chat-1"></i>
+                </span>
+                <span class="nav-text"> Main </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ (request()->is('dashboard/statistics/logs*')) ? 'active' : '' }}" href="/dashboard/statistics/logs">
+                <span class="nav-icon">
+                  <i class="flaticon2-layers-1"></i>
+                </span>
+                <span class="nav-text"> Logs </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-12">
+            <section class="box-body">
+              <div class="row">
+                @foreach($percents as $level => $item)
+                <div class="col-md-4">
+                  <div class="card card-custom wave mb-5">
+											<div class="card-body">
+												<div class="d-flex align-items-center">
+													<div class="mr-10">
+                            <span class="info-box-icon">
+                              {{ log_styler()->icon($level) }}
+                            </span>
+													</div>
+													<div class="d-flex flex-column">
+														<a href="#" class="text-dark text-hover-primary font-weight-bold font-size-h4">
+                              {{ $item['name'] }}
+                              <hr>
+                            </a>
+														<div class="text-dark-75">
+                              {{ $item['count'] }} items - {!! $item['percent'] !!} %
+                            </div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+                </div>
+                @endforeach
+              </div>
+            </section>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endpush
 
 @push('js')

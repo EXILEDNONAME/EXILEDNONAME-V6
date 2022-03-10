@@ -1,7 +1,7 @@
 @extends('layouts.default', ['page' => 'blank'])
 @push('title', 'Statistics')
 
-@push('content')
+@push('body')
 <div class="row">
   <div class="col-xl-12">
     <div class="card card-custom gutter-b card-sticky" data-card="true" id="kt_page_sticky_card">

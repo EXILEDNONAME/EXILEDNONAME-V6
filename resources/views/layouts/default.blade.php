@@ -29,7 +29,9 @@
           <div class="d-flex flex-column-fluid">
             <div class="container-fluid">
               @if ( !empty($page) && $page == 'blank')
-              @stack('content')
+              @stack('body')
+              @else
+              @stack('body')
               @endif
             </div>
           </div>

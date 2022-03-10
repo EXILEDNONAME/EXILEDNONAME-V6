@@ -20,3 +20,16 @@ Route::group([
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// DUMMY - TABLE GENERALS
+Route::group([
+  'as' => 'system.dummy.table.generals.',
+  'prefix' => 'dashboard/dummy/tables/generals',
+  'namespace' => 'Backend\System\Dummy\Table',
+], function(){
+  Route::get('active/{id}', 'GeneralController@active')->name('active');
+  Route::get('inactive/{id}', 'GeneralController@inactive')->name('inactive');
+  Route::get('delete/{id}', 'GeneralController@delete')->name('delete');
+  Route::get('deleteall', 'GeneralController@deleteall')->name('deleteall');
+  Route::resource('/', 'GeneralController')->parameters(['' => 'id']);
+});

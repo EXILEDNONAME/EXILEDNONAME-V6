@@ -13,11 +13,11 @@ class DashboardController extends Controller {
   }
 
   public function index() {
-      return view('pages.backend.default.dashboard.index');
+      return view('pages.backend.system.dashboard.index');
   }
 
   public function file_manager() {
-      return view('pages.backend.default.file-manager.index');
+      return view('pages.backend.system.file-manager.index');
   }
 
   /**
