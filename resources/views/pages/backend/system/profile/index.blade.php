@@ -27,9 +27,9 @@
         </div>
 
         <div class="d-flex align-items-center">
-          <div class="symbol symbol-60 symbol-xxl-100 mr-5 align-self-start align-self-xxl-center">
-            <div class="symbol-label" style="background-image:url('assets/media/users/300_21.jpg')"></div>
-            <i class="symbol-badge bg-success"></i>
+          <div class="symbol symbol-60 symbol-circle symbol-xl-90 mr-5 align-self-start align-self-xxl-center">
+            <div class="symbol-label" style="background-image:url('/assets/backend/media/users/blank.png')"></div>
+            <i class="symbol-badge symbol-badge-bottom bg-success"></i>
           </div>
           <div>
             <a href="#" class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary"> {{ Auth::User()->name }} </a>
@@ -61,7 +61,12 @@
         <!--begin::Nav-->
 
         <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
-          <div class="navi-item">
+          <div class="navi-item mb-1">
+            <a href="custom/apps/profile/profile-1/account-information.html" class="navi-link py-4">
+              <span class="navi-text font-size-lg text-center"> Timeline </span>
+            </a>
+          </div>
+          <div class="navi-item mb-1">
             <a href="custom/apps/profile/profile-1/account-information.html" class="navi-link py-4 active">
               <span class="navi-text font-size-lg text-center"> Account Information </span>
             </a>
@@ -77,9 +82,7 @@
   </div>
 
   <div class="flex-row-fluid ml-lg-8">
-    <!--begin::Card-->
     <div class="card card-custom">
-      <!--begin::Header-->
       <div class="card-header py-3">
         <div class="card-title align-items-start flex-column">
           <h3 class="card-label font-weight-bolder text-dark">Account Information</h3>
@@ -90,50 +93,58 @@
           <button type="reset" class="btn btn-secondary">Cancel</button>
         </div>
       </div>
-      <!--end::Header-->
-      <!--begin::Form-->
       <form class="form">
         <div class="card-body">
-          <!--begin::Heading-->
-          <div class="row">
-            <label class="col-xl-3"></label>
-            <div class="col-lg-9 col-xl-6">
-              <h5 class="font-weight-bold mb-6">Account:</h5>
-            </div>
-          </div>
-          <!--begin::Form Group-->
-          <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Username</label>
-            <div class="col-lg-9 col-xl-6">
-                <input class="form-control form-control-lg form-control-solid" type="text" value="nick84" />
-            </div>
-          </div>
-          <!--begin::Form Group-->
-          <div class="form-group row">
-            <label class="col-xl-3 col-lg-3 col-form-label">Email Address</label>
-            <div class="col-lg-9 col-xl-6">
-              <div class="input-group input-group-lg input-group-solid">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="la la-at"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control form-control-lg form-control-solid" value="nick.watson@loop.com" placeholder="Email" />
-              </div>
-              <span class="form-text text-muted">Email will not be publicly displayed.
-              <a href="#" class="kt-link">Learn more</a>.</span>
-            </div>
-          </div>
-        </div>
-      </form>
-      <!--end::Form-->
-    </div>
-    <!--end::Card-->
-  </div>
-  <!--end::Content-->
-</div>
-@endpush
 
-@push('js')
-<script src="/assets/backend/js/pages/custom/profile/profile.js?v=7.0.5"></script>
-@endpush
+          <table width="100%">
+            <tr height="50px">
+              <td width="100px"> Username </td>
+              <td width="10px"> : </td>
+              <td><input type="email" class="form-control form-control-solid" placeholder="Enter email" value="{{ Auth::User()->username }}" readonly></td>
+            </tr>
+            <tr height="50px">
+              <td> Email </td>
+              <td> : </td>
+              <td><input type="email" class="form-control form-control-solid" placeholder="Enter email" value="{{ Auth::User()->email }}" readonly></td>
+            </tr>
+            <tr height="50px">
+              <td> Phone </td>
+              <td> : </td>
+              <td><input type="email" class="form-control form-control-solid" placeholder="Enter email" value="{{ Auth::User()->phone }}" readonly></td>
+            </tr>
+            <tr height="50px">
+              <td> Name </td>
+              <td> : </td>
+              <td><input type="email" class="form-control" placeholder="Enter email" value="{{ Auth::User()->name }}"></td>
+            </tr>
+            <tr height="50px">
+              <td> Address 1 </td>
+              <td> : </td>
+              <td><input type="email" class="form-control" placeholder="Enter email"></td>
+            </tr>
+            <tr height="50px">
+              <td> Address 2 </td>
+              <td> : </td>
+              <td><input type="email" class="form-control" placeholder="Enter email"></td>
+            </tr>
+          </table>
+
+          <hr>
+
+
+
+
+          </div>
+        </form>
+        <button type="submit" class="btn btn-success mr-10 ml-10">Save Changes</button>
+        <span class="text-right">
+          TEST
+        </span>
+      </div>
+    </div>
+  </div>
+  @endpush
+
+  @push('js')
+  <script src="/assets/backend/js/pages/custom/profile/profile.js?v=7.0.5"></script>
+  @endpush
