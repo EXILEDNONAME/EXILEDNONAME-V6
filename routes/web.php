@@ -15,7 +15,16 @@ Route::group([
   Route::get('/language/{language}', 'DashboardController@language')->name('language');
   Route::get('/logout', 'DashboardController@logout')->name('logout');
   Route::get('/messages', 'DashboardController@message')->name('message');
-  Route::get('/profile', 'DashboardController@profile')->name('profile');
+  Route::group([
+    'as' => 'profile.',
+    'prefix' => 'profile',
+  ], function(){
+    Route::get('/account-information', 'DashboardController@profile_account_information')->name('account-information');
+    Route::get('/change-password', 'DashboardController@profile_change_password')->name('change-password');
+    Route::get('/timeline', 'DashboardController@profile_timeline')->name('timeline');
+    Route::post('update-password', 'DashboardController@profile_update_password')->name('update-password');
+    Route::get('/', function () { return redirect('/dashboard/profile/timeline'); });
+  });
 });
 
 Auth::routes();

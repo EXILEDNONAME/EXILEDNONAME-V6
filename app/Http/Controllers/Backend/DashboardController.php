@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller {
 
@@ -28,8 +29,36 @@ class DashboardController extends Controller {
       return view('pages.backend.system.message.index');
   }
 
-  public function profile() {
-      return view('pages.backend.system.profile.index');
+  public function profile_change_password() {
+      return view('pages.backend.system.profile.change-password');
+  }
+
+  public function profile_account_information() {
+      return view('pages.backend.system.profile.account-information');
+  }
+
+  public function profile_timeline() {
+      return view('pages.backend.system.profile.timeline');
+  }
+
+  public function profile_update_password(Request $request) {
+    if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+    return redirect()->back()->with("error", "Your current password does not matches with the password you provided. Please try again.");
+  }
+
+  if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+    return redirect()->back()->with("error", "New Password cannot be same as your current password. Please choose a different password.");
+  }
+
+  if(!(strcmp($request->get('new-password'), $request->get('confirm-password'))) == 0){
+    return redirect()->back()->with("error", "New Password should be same as your confirmed password. Please retype new password.");
+  }
+
+  $user = Auth::user();
+  $user->password = bcrypt($request->get('new-password'));
+  $user->save();
+
+  return redirect()->back()->with('success', trans('default.notification.success.password-changed'));
   }
 
   /**
