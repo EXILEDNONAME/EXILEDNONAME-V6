@@ -82,7 +82,7 @@
           <h5 class="menu-text"> Settings </h5>
           <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
         </li>
-        <li class="menu-item {{ (request()->is('dashboard/profile')) ? 'menu-item-active' : '' }}">
+        <li class="menu-item {{ (request()->is('dashboard/profile*')) ? 'menu-item-active' : '' }}">
           <a class="menu-link" onclick="location.href='/dashboard/profile';">
             <i class="menu-icon fas fa-user-alt"></i>
             <span class="menu-text"> Profile </span>

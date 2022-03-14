@@ -8,9 +8,20 @@
   <div class="flex-row-fluid ml-lg-8">
     <div class="card card-custom">
 
-      <form class="form">
+      <form id="form-exilednoname" method="POST" action="{{ URL::current() }}/{{ $data->id }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+          {{ method_field('PATCH') }}
+          {{ csrf_field() }}
         <div class="card-body pt-4">
           <hr>
+
+          @if ($message = Session::get('success'))
+          <div class="alert alert-success" role="alert"> {{ $message }} </div><hr>
+          @endif
+
+          @if ($message = Session::get('error'))
+          <div class="alert alert-danger" role="alert"> {{ $message }} </div><hr>
+          @endif
+          
           <table width="100%">
             <tr height="50px">
               <td width="100px"> Photo </td>
@@ -50,7 +61,7 @@
             <tr height="50px">
               <td> Name </td>
               <td> : </td>
-              <td><input type="email" class="form-control" placeholder="Enter Name" value="{{ Auth::User()->name }}"></td>
+              <td><input type="text" class="form-control" placeholder="Enter Name" value="{{ Auth::User()->name }}"></td>
             </tr>
             <tr height="50px">
               <td> Address 1 </td>
@@ -62,11 +73,15 @@
               <td> : </td>
               <td><input type="email" class="form-control" placeholder="Enter Address 2"></td>
             </tr>
+            <tr height="50px">
+              <td></td>
+              <td></td>
+              <td><button type="submit" class="btn btn-success">Save Changes</button></td>
+            </tr>
           </table>
           <hr>
         </div>
       </form>
-      <button type="submit" class="btn btn-success mr-10 ml-10 mb-10">Save Changes</button>
     </div>
   </div>
 </div>

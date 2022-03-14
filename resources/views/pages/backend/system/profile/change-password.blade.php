@@ -7,11 +7,19 @@
 
   <div class="flex-row-fluid ml-lg-8">
     <div class="card card-custom">
-
       <form id="form-exilednoname" method="POST" action="{{ URL::current() }}/../update-password" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-          {{ csrf_field() }}
+        {{ csrf_field() }}
         <div class="card-body pt-4">
           <hr>
+
+          @if ($message = Session::get('success'))
+          <div class="alert alert-success" role="alert"> {{ $message }} </div><hr>
+          @endif
+
+          @if ($message = Session::get('error'))
+          <div class="alert alert-danger" role="alert"> {{ $message }} </div><hr>
+          @endif
+
           <table width="100%">
             <tr height="50px">
               <td> Current Password </td>
@@ -26,7 +34,7 @@
             <tr height="50px">
               <td> Confirm Password </td>
               <td> : </td>
-              <td><input id="confirm-password" type="password" class="{{ $errors->has('confirm-password') ? 'form-control is-invalid' : 'form-control' }}" name="nconfirm-password" required></td>
+              <td><input id="confirm-password" type="password" class="{{ $errors->has('confirm-password') ? 'form-control is-invalid' : 'form-control' }}" name="confirm-password" required></td>
             </tr>
             <tr height="50px">
               <td></td>

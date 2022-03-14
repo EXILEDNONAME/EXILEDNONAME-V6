@@ -20,6 +20,7 @@ Route::group([
     'prefix' => 'profile',
   ], function(){
     Route::get('/account-information', 'DashboardController@profile_account_information')->name('account-information');
+    Route::patch('/account-information/{id}', 'DashboardController@profile_update_account_information')->name('update-account-information');
     Route::get('/change-password', 'DashboardController@profile_change_password')->name('change-password');
     Route::get('/timeline', 'DashboardController@profile_timeline')->name('timeline');
     Route::post('update-password', 'DashboardController@profile_update_password')->name('update-password');

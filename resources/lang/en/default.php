@@ -41,12 +41,14 @@ return [
 
   'notification' => [
     'success' => [
-      'active'          => 'This item has been set to inactive',
-      'inactive'        => 'This item has been set to active',
-      'delete-selected' => 'Selected item deleted successfully',
-      'delete'          => 'This item was successfully deleted',
-      'item-created'    => 'Item saved successfully',
-      'item-updated'    => 'Item updated successfully',
+      'active'            => 'This item has been set to inactive',
+      'inactive'          => 'This item has been set to active',
+      'delete-selected'   => 'Selected item deleted successfully',
+      'delete'            => 'This item was successfully deleted',
+      'item-created'      => 'Item saved successfully',
+      'item-updated'      => 'Item updated successfully',
+      'password-changed'  => 'Password has been Changed',
+      'profile-updated'    => 'Profile has been updated',
     ],
   ],
 
