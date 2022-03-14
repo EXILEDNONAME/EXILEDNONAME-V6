@@ -53,3 +53,16 @@ Route::group([
   Route::get('deleteall', 'GeneralController@deleteall')->name('deleteall');
   Route::resource('/', 'GeneralController')->parameters(['' => 'id']);
 });
+
+// MANAGEMENT - ACCESS
+Route::group([
+  'as' => 'system.management.accesses.',
+  'prefix' => 'dashboard/managements/accesses',
+  'namespace' => 'Backend\System\Management',
+], function(){
+  Route::get('active/{id}', 'AccessController@active')->name('active');
+  Route::get('inactive/{id}', 'AccessController@inactive')->name('inactive');
+  Route::get('delete/{id}', 'AccessController@delete')->name('delete');
+  Route::get('deleteall', 'AccessController@deleteall')->name('deleteall');
+  Route::resource('/', 'AccessController')->parameters(['' => 'id']);
+});

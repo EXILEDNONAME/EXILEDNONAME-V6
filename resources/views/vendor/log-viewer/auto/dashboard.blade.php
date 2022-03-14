@@ -201,7 +201,6 @@
             <div class="card card-custom bgi-no-repeat card-stretch gutter-b" style="background-position: right top; background-size: 30% auto; background-image: url(/assets/backend/media/svg/shapes/abstract-4.svg)">
               <div class="card-body" style="">
                 <center>
-                  {{ log_styler()->icon($level) }} <hr>
                   <a href="{{ URL::Current() }}/#" class="text-info"><b> {{ $item['name'] }} </b></a><br>
                   <span class="text-dark"> [{{ $item['count'] }}] - {!! $item['percent'] !!}% </span>
                 </center>

@@ -8,6 +8,7 @@ class CreateUsersTable extends Migration {
   public function up() {
     Schema::create('users', function (Blueprint $table) {
       $table->increments('id');
+      $table->integer('id_access')->unsigned();
       $table->string('name');
       $table->string('username')->unique();
       $table->string('phone')->unique();
@@ -15,6 +16,7 @@ class CreateUsersTable extends Migration {
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->rememberToken();
+      $table->foreign('id_access')->references('id')->on('accesses')->onDelete('restrict')->onUpdate('restrict');
       $table->timestamps();
     });
   }

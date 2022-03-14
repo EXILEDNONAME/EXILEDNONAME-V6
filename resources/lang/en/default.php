@@ -50,6 +50,9 @@ return [
       'password-changed'  => 'Password has been Changed',
       'profile-updated'    => 'Profile has been updated',
     ],
+    'error'   => [
+      'restrict'   => 'Access Restrictions',
+    ]
   ],
 
 
