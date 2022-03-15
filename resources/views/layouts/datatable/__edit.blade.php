@@ -1,5 +1,4 @@
 @extends('layouts.default')
-@push('title', 'Edit')
 
 @push('body')
 <div class="row">

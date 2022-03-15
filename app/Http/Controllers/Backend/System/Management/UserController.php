@@ -8,11 +8,12 @@ use Redirect,Response;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
-use App\Http\Requests\Backend\System\Management\Access\StoreRequest;
-use App\Http\Requests\Backend\System\Management\Access\UpdateRequest;
+use App\Http\Requests\Backend\System\Management\User\StoreRequest;
+use App\Http\Requests\Backend\System\Management\User\UpdateRequest;
 
-class AccessController extends Controller {
+class UserController extends Controller {
 
   /**
   **************************************************
@@ -24,9 +25,9 @@ class AccessController extends Controller {
   public function __construct() {
 
     $this->middleware('auth');
-    $this->url = '/dashboard/managements/accesses';
-    $this->path = 'pages.backend.system.management.access.';
-    $this->model = 'App\Access';
+    $this->url = '/dashboard/managements/users';
+    $this->path = 'pages.backend.system.management.user.';
+    $this->model = 'App\User';
 
     if (request('date_start') && request('date_end')) { $this->data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->get(); }
     else { $this->data = $this->model::get(); }
@@ -82,10 +83,18 @@ class AccessController extends Controller {
   **************************************************
   **/
 
-    public function store(StoreRequest $request) {
-    $store = $request->all();
-    $this->model::create($store);
-    $userSchema = User::first();
+  public function store(StoreRequest $request) {
+
+    User::create([
+      'id_access'     => $request->id_access,
+      'name'          => $request->name,
+      'username'          => $request->username,
+      'email'          => $request->email,
+      'phone'          => $request->phone,
+      'password'      => Hash::make($request['password']),
+    ]);
+    
+
     return redirect($this->url)->with('success', trans('default.notification.success.item-created'));
 
   }
@@ -123,11 +132,16 @@ class AccessController extends Controller {
   **/
 
   public function destroy($id) {
-    try {
-      $this->model::destroy($id);
-      return redirect($this->url)->with('success', trans('default.notification.success.item-deleted'));
-    } catch (\Exception $e) {
-      return redirect($this->url)->with('error', trans('default.notification.error'));
+    if ($id = 1) {
+      return redirect($this->url)->with('error', trans('default.notification.error.restrict'));
+    }
+    else {
+      try {
+        $this->model::destroy($id);
+        return redirect($this->url)->with('success', trans('default.notification.success.item-deleted'));
+      } catch (\Exception $e) {
+        return redirect($this->url)->with('error', trans('default.notification.error'));
+      }
     }
   }
 
@@ -155,9 +169,14 @@ class AccessController extends Controller {
   **/
 
   public function delete($id) {
-    $this->model::destroy($id);
-    $data = $this->model::where('id',$id)->delete();
-    return Response::json($data);
+    if ($id == 1) {
+      return Response::json($data);
+    }
+    else {
+      $this->model::destroy($id);
+      $data = $this->model::where('id',$id)->delete();
+      return Response::json($data);
+    }
   }
 
   /**
@@ -167,9 +186,14 @@ class AccessController extends Controller {
   **/
 
   public function deleteall(Request $request) {
-    $exilednoname = $request->EXILEDNONAME;
-    $this->model::whereIn('id',explode(",",$exilednoname))->delete();
-    return Response::json($exilednoname);
+    if ($id == 1) {
+      return Response::json($data);
+    }
+    else {
+      $exilednoname = $request->EXILEDNONAME;
+      $this->model::whereIn('id',explode(",",$exilednoname))->delete();
+      return Response::json($exilednoname);
+    }
   }
 
 }

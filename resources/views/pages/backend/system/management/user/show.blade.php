@@ -1,5 +1,5 @@
 @extends('layouts.datatable.__show', ['status' => 'false', 'daterange' => 'false'])
-@push('title', 'Management Accesses')
+@push('title', 'Management Users')
 
 @push('content-body')
 <tr>

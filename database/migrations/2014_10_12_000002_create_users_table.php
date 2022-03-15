@@ -18,6 +18,9 @@ class CreateUsersTable extends Migration {
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password');
       $table->rememberToken();
+      $table->integer('active')->default(1);
+      $table->integer('sort')->default(1);
+      $table->integer('status')->default(1);
       $table->foreign('id_access')->references('id')->on('accesses')->onDelete('restrict')->onUpdate('restrict');
       $table->timestamps();
     });

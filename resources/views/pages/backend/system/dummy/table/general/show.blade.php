@@ -1,5 +1,4 @@
 @extends('layouts.datatable.__show', ['status' => 'false', 'daterange' => 'false'])
-@push('title', 'JASAMARGA Divisions')
 
 @push('content-body')
 <tr>

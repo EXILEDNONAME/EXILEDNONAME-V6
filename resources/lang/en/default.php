@@ -28,6 +28,7 @@ return [
     ],
     'filter-status'   => 'Select Status',
     'filter-active'   => 'Select Active',
+    'filter-reset'    => 'Filter Reset',
     'main'            => 'Main',
     'minimize'        => 'Minimize',
     'no'              => 'No',
