@@ -86,7 +86,7 @@
               </tr>
               <tr>
                 <td class="align-middle font-weight-bold"> Updated At </td>
-                <td class="align-middle"> {!! \Carbon\Carbon::parse($data->created_at)->format('d F Y, H:i') !!} </td>
+                <td class="align-middle"> {!! \Carbon\Carbon::parse($data->updated_at)->format('d F Y, H:i') !!} </td>
               </tr>
             </table>
           </div>

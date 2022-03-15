@@ -46,6 +46,7 @@ class UserController extends Controller {
       return DataTables::of($this->data)
       ->editColumn('date_start', function($order) { return \Carbon\Carbon::parse($order->date_start)->format('d F Y, H:i'); })
       ->editColumn('date_end', function($order) { return \Carbon\Carbon::parse($order->date_end)->format('d F Y, H:i'); })
+      ->editColumn('id_accesses', function($order) { return $order->accesses->name; })
       ->rawColumns(['description'])
       ->addIndexColumn()
       ->make(true);
