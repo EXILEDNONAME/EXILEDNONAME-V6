@@ -20,7 +20,6 @@ class Users extends Seeder
         'phone'             => '08112448111',
         'email'             => 'naufalhaidirridha@rocketmail.com',
         // 'api_token'         => hash('sha256', Str::random(60)),
-        'email_verified_at' => Carbon::now(),
         'password'          => bcrypt('1234'),
         'created_at'        => Carbon::now(),
       ],

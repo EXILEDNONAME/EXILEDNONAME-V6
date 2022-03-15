@@ -85,15 +85,20 @@ class UserController extends Controller {
 
   public function store(StoreRequest $request) {
 
+    if(!(strcmp($request->get('password'), $request->get('confirm_password'))) == 0){
+      return redirect()->back()->withInput($request->all())->with('error', trans('default.notification.error.password-confirm'));
+    }
+
     User::create([
-      'id_access'     => $request->id_access,
-      'name'          => $request->name,
-      'username'          => $request->username,
-      'email'          => $request->email,
-      'phone'          => $request->phone,
-      'password'      => Hash::make($request['password']),
+      'id_access' => $request->id_access,
+      'name'      => $request->name,
+      'username'  => $request->username,
+      'email'     => $request->email,
+      'phone'     => $request->phone,
+      'address_1' => $request->address_1,
+      'address_2' => $request->address_2,
+      'password'  => Hash::make($request['password']),
     ]);
-    
 
     return redirect($this->url)->with('success', trans('default.notification.success.item-created'));
 
@@ -132,7 +137,7 @@ class UserController extends Controller {
   **/
 
   public function destroy($id) {
-    if ($id = 1) {
+    if ($id == 1) {
       return redirect($this->url)->with('error', trans('default.notification.error.restrict'));
     }
     else {
@@ -186,7 +191,7 @@ class UserController extends Controller {
   **/
 
   public function deleteall(Request $request) {
-    if ($id == 1) {
+    if ($request->EXILEDNONAME == 1) {
       return Response::json($data);
     }
     else {

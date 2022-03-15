@@ -18,6 +18,11 @@
         </div>
       </div>
       <div class="card-body" style="">
+
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger" role="alert"> {{ $message }} </div><hr>
+        @endif
+
         <form method="POST" id="form-exilednoname" action="{{ URL::current() }}/../" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
           {{ csrf_field() }}
 
