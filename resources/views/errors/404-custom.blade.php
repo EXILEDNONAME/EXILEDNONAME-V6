@@ -23,9 +23,8 @@
 				<div class="d-flex flex-column flex-row-fluid text-center">
 					<h1 class="error-title font-weight-boldest text-white mb-12" style="margin-top: 5rem;"> 404 </h1>
 					<p class="display-4 font-weight-bold text-white">
-            Looks like something went wrong.We're working on it <br>
+            Ngopi heula meh ca'ang :()
           </p>
-          <p><a href="/dashboard" class="font-weight-bold text-white"><u> Back To Dashboard <u></a></p>
 				</div>
 			</div>
 		</div>

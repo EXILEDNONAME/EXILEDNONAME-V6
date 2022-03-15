@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return 'test';
+    return view('errors.404-custom');
 });
 
 Route::group([
@@ -52,6 +52,19 @@ Route::group([
   Route::get('delete/{id}', 'GeneralController@delete')->name('delete');
   Route::get('deleteall', 'GeneralController@deleteall')->name('deleteall');
   Route::resource('/', 'GeneralController')->parameters(['' => 'id']);
+});
+
+// DUMMY - TABLE RELATIONS
+Route::group([
+  'as' => 'system.dummy.table.relations.',
+  'prefix' => 'dashboard/dummy/tables/relations',
+  'namespace' => 'Backend\System\Dummy\Table',
+], function(){
+  Route::get('active/{id}', 'RelationController@active')->name('active');
+  Route::get('inactive/{id}', 'RelationController@inactive')->name('inactive');
+  Route::get('delete/{id}', 'RelationController@delete')->name('delete');
+  Route::get('deleteall', 'RelationController@deleteall')->name('deleteall');
+  Route::resource('/', 'RelationController')->parameters(['' => 'id']);
 });
 
 // MANAGEMENT - ACCESSES

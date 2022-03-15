@@ -1,2 +1,2 @@
 @extends('layouts.datatable.__create', ['status' => 'false', 'daterange' => 'false'])
-@push('title', 'Table Generals')
+@push('title', 'Table Relations')
