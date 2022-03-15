@@ -1,7 +1,11 @@
 <head>
   <base href="../../">
   <meta charset="utf-8" />
-  <title> EXILEDNONAME </title>
+  <title>
+    @if (request()->is('dashboard')) EXILEDNONAME
+    @else EXILEDNONAME - @stack('title')
+    @endif
+  </title>
   <meta name="description" content="Page with empty content" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />

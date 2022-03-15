@@ -21,10 +21,10 @@
           @if ($message = Session::get('error'))
           <div class="alert alert-danger" role="alert"> {{ $message }} </div><hr>
           @endif
-          
+
           <table width="100%">
             <tr height="50px">
-              <td width="100px"> Photo </td>
+              <td width="150px"> Photo </td>
               <td width="10px"></td>
               <td>
                 <div class="image-input image-input-outline image-input-circle" id="kt_user_avatar" style="background-image: url(/assets/backend/media/users/blank.png)">
@@ -66,12 +66,12 @@
             <tr height="50px">
               <td> Address 1 </td>
               <td> : </td>
-              <td><input type="email" class="form-control" placeholder="Enter Address 1"></td>
+              <td><input type="text" class="form-control" name="address_1" placeholder="Enter Address 1" value="{{ Auth::User()->address_1 }}"></td>
             </tr>
             <tr height="50px">
               <td> Address 2 </td>
               <td> : </td>
-              <td><input type="email" class="form-control" placeholder="Enter Address 2"></td>
+              <td><input type="text" class="form-control" name="address_2" placeholder="Enter Address 2" value="{{ Auth::User()->address_2 }}"></td>
             </tr>
             <tr height="50px">
               <td></td>

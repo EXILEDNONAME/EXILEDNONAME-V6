@@ -52,15 +52,15 @@ class DashboardController extends Controller {
 
   public function profile_update_password(Request $request) {
     if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
-      return redirect()->back()->with("error", "Your current password does not matches with the password you provided. Please try again.");
+      return redirect()->back()->with('error', trans('default.notification.error.password-current'));
     }
-
+    
     if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
-      return redirect()->back()->with("error", "New Password cannot be same as your current password. Please choose a different password.");
+      return redirect()->back()->with('error', trans('default.notification.error.password-new'));
     }
 
     if(!(strcmp($request->get('new-password'), $request->get('confirm-password'))) == 0){
-      return redirect()->back()->with("error", "New Password should be same as your confirmed password. Please retype new password.");
+      return redirect()->back()->with('error', trans('default.notification.error.password-confirm'));
     }
 
     $user = Auth::user();

@@ -22,8 +22,8 @@
 
           <table width="100%">
             <tr height="50px">
-              <td> Current Password </td>
-              <td> : </td>
+              <td width="150px"> Current Password </td>
+              <td width="10px"> : </td>
               <td><input id="current-password" type="password" class="{{ $errors->has('current-password') ? 'form-control is-invalid' : 'form-control' }}" name="current-password" required></td>
             </tr>
             <tr height="50px">

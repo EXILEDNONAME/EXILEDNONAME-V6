@@ -51,7 +51,10 @@ return [
       'profile-updated'    => 'Profile has been updated',
     ],
     'error'   => [
-      'restrict'   => 'Access Restrictions',
+      'restrict'          => 'Access Restrictions',
+      'password-current'  => 'Your current password does not matches with the password you provided. Please try again.',
+      'password-new'      => 'New Password cannot be same as your current password. Please choose a different password.',
+      'password-confirm'  => 'New Password should be same as your confirmed password. Please retype new password.',
     ]
   ],
 

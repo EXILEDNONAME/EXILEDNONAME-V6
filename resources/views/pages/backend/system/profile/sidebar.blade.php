@@ -9,8 +9,7 @@
         </div>
         <div>
           <a href="#" class="font-weight-bolder font-size-h5 text-dark-75 text-hover-primary"> {{ Auth::User()->name }} </a>
-          <div class="text-muted">Application Developer</div>
-
+          <span class="text-danger"> Administrator </span>
         </div>
       </div>
 
