@@ -17,6 +17,7 @@
         "laravel/ui": "1.0",
         "laravelcollective/html": "^6.3",
         "simplesoftwareio/simple-qrcode": "~4",
+        "spatie/laravel-activitylog": "^3.17",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
