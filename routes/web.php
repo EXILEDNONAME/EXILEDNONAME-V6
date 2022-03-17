@@ -51,6 +51,7 @@ Route::group([
   Route::get('inactive/{id}', 'GeneralController@inactive')->name('inactive');
   Route::get('delete/{id}', 'GeneralController@delete')->name('delete');
   Route::get('deleteall', 'GeneralController@deleteall')->name('deleteall');
+  Route::get('deleted', 'GeneralController@items_deleted')->name('items-deleted');
   Route::resource('/', 'GeneralController')->parameters(['' => 'id']);
 });
 

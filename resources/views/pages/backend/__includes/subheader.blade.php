@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="d-flex align-items-center">
-      <a href="#" class="btn btn-light font-weight-bold btn-sm">Actions</a>
+      <a href="{{ URL::Current() }}/deleted" class="btn btn-light font-weight-bold btn-sm"> Items Deleted </a>
     </div>
   </div>
 </div>

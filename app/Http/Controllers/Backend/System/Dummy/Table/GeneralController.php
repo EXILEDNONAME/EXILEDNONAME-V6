@@ -52,6 +52,18 @@ class GeneralController extends Controller {
     return view($this->path . 'index', compact('model'));
   }
 
+  public function items_deleted()
+    {
+      $data = $this->model::onlyTrashed()->get();
+      if(request()->ajax()) {
+        return DataTables::of($data)
+        ->editColumn('deleted_at', function($order) { return \Carbon\Carbon::parse($order->deleted_at)->format('d F Y, H:i'); })
+        ->addIndexColumn()
+        ->make(true);
+      }
+      return view($this->path . 'items-deleted', compact('data'));
+    }
+
   /**
   **************************************************
   * @return Show
