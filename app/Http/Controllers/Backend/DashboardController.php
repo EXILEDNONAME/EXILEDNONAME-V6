@@ -40,9 +40,32 @@ class DashboardController extends Controller {
   }
 
   public function profile_update_account_information(Request $request, $id) {
-    $data = User::findOrFail($id);
-    $update = $request->all();
-    $data->update($update);
+    if ($request->file('profile_avatar')) {
+      $photo = time().'_'. $request->file('profile_avatar')->getClientOriginalName();
+      $destination = base_path() . '/public/profile_avatar/user/' . $id;
+      $request->file('profile_avatar')->move($destination, $photo);
+      User::where('id', $id)->update([
+        'name' => $request->get('name'),
+        'email' => $request->get('email'),
+        'phone' => $request->get('phone'),
+        'profile_avatar' => $photo,
+      ]);
+    }
+    else if ($request->get('profile_avatar')) {
+      User::where('id', $id)->update([
+        'name' => $request->get('name'),
+        'email' => $request->get('email'),
+        'phone' => $request->get('phone'),
+        'profile_avatar' => $request->get('profile_avatar'),
+      ]);
+    }
+    else {
+      User::where('id', $id)->update([
+        'name' => $request->get('name'),
+        'email' => $request->get('email'),
+        'phone' => $request->get('phone'),
+      ]);
+    }
     return redirect('/dashboard/profile/account-information')->with('success', trans('default.notification.success.profile-updated'));
   }
 
@@ -54,7 +77,7 @@ class DashboardController extends Controller {
     if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
       return redirect()->back()->with('error', trans('default.notification.error.password-current'));
     }
-    
+
     if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
       return redirect()->back()->with('error', trans('default.notification.error.password-new'));
     }
