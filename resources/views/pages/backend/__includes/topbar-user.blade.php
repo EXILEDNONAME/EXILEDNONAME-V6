@@ -17,8 +17,7 @@
 
   <div class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
     <ul class="navi navi-hover py-4">
-      <li class="navi-item"><a href="#" class="navi-link"><span class="navi-text"> My Profile </span></a></li>
-      <li class="navi-item"><a href="#" class="navi-link"><span class="navi-text"> Settings </span></a></li>
+      <li class="navi-item"><a href="/dashboard/profile" class="navi-link"><span class="navi-text"> Profile </span></a></li>
       <li class="navi-item"><a id="logout_user" href="{{ URL::Current() }}#" class="navi-link"><span class="navi-text"> Logout </span></a></li>
     </ul>
   </div>
