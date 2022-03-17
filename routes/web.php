@@ -49,6 +49,8 @@ Route::group([
 ], function(){
   Route::get('active/{id}', 'GeneralController@active')->name('active');
   Route::get('inactive/{id}', 'GeneralController@inactive')->name('inactive');
+  Route::get('restore/{id}', 'GeneralController@restore')->name('restore');
+  Route::get('delete-permanent/{id}', 'GeneralController@delete_permanent')->name('delete-permanent');
   Route::get('delete/{id}', 'GeneralController@delete')->name('delete');
   Route::get('deleteall', 'GeneralController@deleteall')->name('deleteall');
   Route::get('deleted', 'GeneralController@items_deleted')->name('items-deleted');

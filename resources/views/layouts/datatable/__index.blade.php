@@ -465,7 +465,7 @@ var KTDatatablesExtensionsKeytable = function() {
       var strEXILEDNONAME = exilednonameArr.join(",");
       Swal.fire({
         title: "Are you sure?",
-        text: "You will permanently delete selected",
+        text: "{{ trans('default.label.confirm-deleteall') }}",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes",
@@ -498,7 +498,7 @@ var KTDatatablesExtensionsKeytable = function() {
       var id = $(this).data("id");
       Swal.fire({
         title: "Are you sure?",
-        text: "You will permanently delete this item",
+        text: "{{ trans('default.label.confirm-delete') }}",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes",

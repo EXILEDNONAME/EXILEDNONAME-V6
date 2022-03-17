@@ -1,4 +1,4 @@
-@extends('layouts.datatable.__index', ['daterange' => 'false', 'status' => 'false'])
+@extends('layouts.datatable.__deleted', ['daterange' => 'false', 'status' => 'false'])
 @push('title', 'Table Generals')
 
 @push('table-header')

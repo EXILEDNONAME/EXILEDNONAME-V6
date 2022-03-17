@@ -22,7 +22,8 @@
       </div>
     </div>
     <div class="d-flex align-items-center">
-      <a href="{{ URL::Current() }}/deleted" class="btn btn-light font-weight-bold btn-sm"> Items Deleted </a>
+      @if ( !empty($page) && $page == 'items-deleted') <a href="{{ URL::Current() }}/../#" class="btn btn-light font-weight-bold btn-sm"> Back </a> @endif
+      @if ( !empty($page) && $page == 'index') <a href="{{ URL::Current() }}/deleted" class="btn btn-light font-weight-bold btn-sm"> Items Deleted </a> @endif
     </div>
   </div>
 </div>

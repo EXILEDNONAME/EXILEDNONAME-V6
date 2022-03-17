@@ -53,16 +53,35 @@ class GeneralController extends Controller {
   }
 
   public function items_deleted()
-    {
-      $data = $this->model::onlyTrashed()->get();
-      if(request()->ajax()) {
-        return DataTables::of($data)
-        ->editColumn('deleted_at', function($order) { return \Carbon\Carbon::parse($order->deleted_at)->format('d F Y, H:i'); })
-        ->addIndexColumn()
-        ->make(true);
-      }
-      return view($this->path . 'items-deleted', compact('data'));
+  {
+    $data = $this->model::onlyTrashed()->get();
+    if(request()->ajax()) {
+      return DataTables::of($data)
+      ->editColumn('deleted_at', function($order) { return \Carbon\Carbon::parse($order->deleted_at)->format('d F Y, H:i'); })
+      ->addIndexColumn()
+      ->make(true);
     }
+    return view($this->path . 'items-deleted', compact('data'));
+  }
+
+  public function restore($id) {
+    $data = $this->model::withTrashed()->findOrFail($id);
+    if ($data->trashed()) {
+      $data->restore();
+      $data = $this->model::where('id', $id)->update(['deleted_at' => NULL]);
+      return Response::json($data);
+    } else { return Response::json($data);}
+  }
+
+  public function delete_permanent($id) {
+    $data = $this->model::withTrashed()->findOrFail($id);
+    if(!$data->trashed()) {
+      return Response::json($data);
+    } else {
+      $data->forceDelete();
+      return Response::json($data);
+    }
+  }
 
   /**
   **************************************************
@@ -94,7 +113,7 @@ class GeneralController extends Controller {
   **************************************************
   **/
 
-    public function store(StoreRequest $request) {
+  public function store(StoreRequest $request) {
     $store = $request->all();
     $this->model::create($store);
     $userSchema = User::first();
