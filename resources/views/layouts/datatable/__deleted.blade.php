@@ -39,8 +39,9 @@
             </div>
           </div>
           <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ trans('default.label.minimize') }}"><i class="fas fa-caret-down"></i></a>
-          <div class="collapse" id="toolbar_delete">
-            <a data-url="" class="delete-all btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="tooltip" title="{{ trans('default.label.delete-selected') }}"><i class="text-danger fas fa-trash"></i></a>
+          <div class="collapse" id="toolbar_default">
+            <a data-url="" class="restoreall btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="tooltip" title="{{ trans('default.label.restoreall-selected') }}"><i class="text-success fas fa-undo"></i></a>
+            <a data-url="" class="deletepermanent-all btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="tooltip" title="{{ trans('default.label.deleteall-permanently-selected') }}"><i class="text-danger fas fa-trash"></i></a>
           </div>
         </div>
       </div>
@@ -222,7 +223,7 @@ var KTDatatablesExtensionsKeytable = function() {
     });
 
     $("#table-refresh").on("click", function() {
-      $('#toolbar_delete').collapse('hide');
+      $('#toolbar_default').collapse('hide');
       table.ajax.reload();
     });
     $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });
@@ -241,12 +242,12 @@ var KTDatatablesExtensionsKeytable = function() {
           var checkedNodes = table.rows('.selected').nodes();
           var count = checkedNodes.length;
           $('#kt_datatable_selected_records').html(count);
-          if (count > 0) { $('#toolbar_delete').collapse('show'); }
+          if (count > 0) { $('#toolbar_default').collapse('show'); }
         }
         else {
           $(this).prop('checked', false);
           table.rows($(this).closest('tr')).deselect();
-          $('#toolbar_delete').collapse('hide');
+          $('#toolbar_default').collapse('hide');
         }
       });
     });
@@ -255,8 +256,8 @@ var KTDatatablesExtensionsKeytable = function() {
       var checkedNodes = table.rows('.selected').nodes();
       var count = checkedNodes.length;
       $('#kt_datatable_selected_records').html(count);
-      if (count > 0) { $('#toolbar_delete').collapse('show'); }
-      else { $('#toolbar_delete').collapse('hide'); }
+      if (count > 0) { $('#toolbar_default').collapse('show'); }
+      else { $('#toolbar_default').collapse('hide'); }
     });
 
     $('body').on('click', '#restore', function () {
@@ -291,117 +292,152 @@ var KTDatatablesExtensionsKeytable = function() {
       });
     });
 
-  $('body').on('click', '#delete_permanent', function () {
-    var id = $(this).data("id");
-    Swal.fire({
-      title: "Are you sure?",
-      text: "{{ trans('default.label.confirm-delete-permanent') }}",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-      reverseButtons: false
-    }).then(function(result) {
-      if (result.value) {
-    $.ajax({
-      type: "get",
-      url: "{{ URL::current() }}/../delete-permanent/"+id,
-      processing: true,
-      serverSide: true,
-      success: function (data) {
-        var oTable = $('#exilednoname').dataTable();
-        oTable.fnDraw(false);
-        toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-        toastr.success("{{ trans('default.notification.success.active') }}");
-      },
-      error: function (data) {
-        toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-        toastr.error("{{ trans('default.notification.error.restrict') }}!");
+    $('.restoreall').on('click', function(e) {
+      var exilednonameArr = [];
+      $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
+      var strEXILEDNONAME = exilednonameArr.join(",");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "{{ trans('default.label.confirm-restoreall') }}",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        reverseButtons: false
+      }).then(function(result) {
+        if (result.value) {
+          $.ajax({
+            url: "{{ URL::current() }}/../restoreall",
+            type: 'get',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: 'EXILEDNONAME='+strEXILEDNONAME,
+            success: function (data) {
+              var oTable = $('#exilednoname').dataTable();
+              $('#toolbar_default').collapse('hide');
+              oTable.fnDraw(false);
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.success("{{ trans('default.notification.success.delete-permanentall-selected') }}");
+            },
+            error: function (data) {
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.error("{{ trans('default.notification.error.restrict') }}!");
+            }
+          });
+        }
+      });
+    });
+
+    $('body').on('click', '#delete_permanent', function () {
+      var id = $(this).data("id");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "{{ trans('default.label.confirm-delete-permanent') }}",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        reverseButtons: false
+      }).then(function(result) {
+        if (result.value) {
+          $.ajax({
+            type: "get",
+            url: "{{ URL::current() }}/../delete-permanent/"+id,
+            processing: true,
+            serverSide: true,
+            success: function (data) {
+              var oTable = $('#exilednoname').dataTable();
+              oTable.fnDraw(false);
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.success("{{ trans('default.notification.success.active') }}");
+            },
+            error: function (data) {
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.error("{{ trans('default.notification.error.restrict') }}!");
+            }
+          });
+        }
+      });
+    });
+
+    $('.deletepermanent-all').on('click', function(e) {
+      var exilednonameArr = [];
+      $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
+      var strEXILEDNONAME = exilednonameArr.join(",");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "{{ trans('default.label.confirm-delete-permanentall') }}",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        reverseButtons: false
+      }).then(function(result) {
+        if (result.value) {
+          $.ajax({
+            url: "{{ URL::current() }}/../delete-permanentall",
+            type: 'get',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: 'EXILEDNONAME='+strEXILEDNONAME,
+            success: function (data) {
+              var oTable = $('#exilednoname').dataTable();
+              $('#toolbar_default').collapse('hide');
+              oTable.fnDraw(false);
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.success("{{ trans('default.notification.success.delete-permanentall-selected') }}");
+            },
+            error: function (data) {
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.error("{{ trans('default.notification.error.restrict') }}!");
+            }
+          });
+        }
+      });
+    });
+
+    $('body').on('click', '.delete', function () {
+      var id = $(this).data("id");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You will permanently delete this item",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+        reverseButtons: false
+      }).then(function(result) {
+        if (result.value) {
+          $.ajax({
+            type: "get",
+            url: "{{ URL::current() }}/delete/"+id,
+            success: function (data) {
+              var oTable = $('#exilednoname').dataTable();
+              oTable.fnDraw(false);
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.success("{{ trans('default.notification.success.delete') }}");
+            },
+            error: function (data) {
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.error("{{ trans('default.notification.error.restrict') }}!");
+            }
+          });
+        }
+      });
+    });
+
+    $('body').on('click', '#delete', function () {
+      var id = $(this).data("id");
+      if(confirm("Are You sure want to delete !")){
+
       }
     });
-  }
-});
-});
 
-  $('.delete-all').on('click', function(e) {
-    var exilednonameArr = [];
-    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
-    var strEXILEDNONAME = exilednonameArr.join(",");
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You will permanently delete selected",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-      reverseButtons: false
-    }).then(function(result) {
-      if (result.value) {
-        $.ajax({
-          url: "{{ URL::current() }}/deleteall",
-          type: 'get',
-          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-          data: 'EXILEDNONAME='+strEXILEDNONAME,
-          success: function (data) {
-            var oTable = $('#exilednoname').dataTable();
-            $('#toolbar_delete').collapse('hide');
-            oTable.fnDraw(false);
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.success("{{ trans('default.notification.success.delete-selected') }}");
-          },
-          error: function (data) {
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.error("{{ trans('default.notification.error.restrict') }}!");
-          }
-        });
-      }
-    });
-  });
+  };
 
-  $('body').on('click', '.delete', function () {
-    var id = $(this).data("id");
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You will permanently delete this item",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-      reverseButtons: false
-    }).then(function(result) {
-      if (result.value) {
-        $.ajax({
-          type: "get",
-          url: "{{ URL::current() }}/delete/"+id,
-          success: function (data) {
-            var oTable = $('#exilednoname').dataTable();
-            oTable.fnDraw(false);
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.success("{{ trans('default.notification.success.delete') }}");
-          },
-          error: function (data) {
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.error("{{ trans('default.notification.error.restrict') }}!");
-          }
-        });
-      }
-    });
-  });
-
-  $('body').on('click', '#delete', function () {
-    var id = $(this).data("id");
-    if(confirm("Are You sure want to delete !")){
-
-    }
-  });
-
-};
-
-return {
-  init: function() {
-    initTable2();
-  },
-};
+  return {
+    init: function() {
+      initTable2();
+    },
+  };
 
 }();
 

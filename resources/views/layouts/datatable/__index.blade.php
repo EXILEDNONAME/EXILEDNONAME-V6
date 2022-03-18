@@ -21,6 +21,9 @@
           <div class="collapse" id="toolbar_filter_hide">
             <a id="table-filter-hide" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="reload" data-toggle="tooltip" data-placement="top" title="" data-original-title="Filter Hide"><i class="fas fa-filter"></i></a>
           </div>
+
+          <a class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-toggle="modal" rel="tooltip" data-target="#exampleModalCenter" data-original-title="Show History"><i class="fas fa-history"></i></a>
+
           <div class="dropdown dropdown-inline">
             <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-download"></i>
@@ -151,6 +154,24 @@
               </tr>
             </thead>
           </table>
+        </div>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+              </div>
+              <div class="modal-body">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary font-weight-bold">Save changes</button>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -375,16 +396,12 @@ var KTDatatablesExtensionsKeytable = function() {
 
     $("#table-filter-show").on("click", function() {
       $('#toolbar_filter').collapse('show');
-
-      // SWITCHER
       $('#toolbar_filter_show').collapse('hide');
       $('#toolbar_filter_hide').collapse('show');
     });
 
     $("#table-filter-hide").on("click", function() {
       $('#toolbar_filter').collapse('hide');
-
-      // SWITCHER
       $('#toolbar_filter_show').collapse('show');
       $('#toolbar_filter_hide').collapse('hide');
     });

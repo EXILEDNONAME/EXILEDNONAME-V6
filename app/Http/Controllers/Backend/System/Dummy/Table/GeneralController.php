@@ -52,7 +52,7 @@ class GeneralController extends Controller {
     return view($this->path . 'index', compact('model'));
   }
 
-  public function items_deleted()
+  public function trash()
   {
     $data = $this->model::onlyTrashed()->get();
     if(request()->ajax()) {
@@ -73,6 +73,12 @@ class GeneralController extends Controller {
     } else { return Response::json($data);}
   }
 
+  public function restoreall(Request $request) {
+    $exilednoname = $request->EXILEDNONAME;
+    $this->model::whereIn('id',explode(",",$exilednoname))->restore();
+    return Response::json($exilednoname);
+  }
+
   public function delete_permanent($id) {
     $data = $this->model::withTrashed()->findOrFail($id);
     if(!$data->trashed()) {
@@ -81,6 +87,12 @@ class GeneralController extends Controller {
       $data->forceDelete();
       return Response::json($data);
     }
+  }
+
+  public function delete_permanentall(Request $request) {
+    $exilednoname = $request->EXILEDNONAME;
+    $this->model::whereIn('id',explode(",",$exilednoname))->forceDelete();
+    return Response::json($exilednoname);
   }
 
   /**
