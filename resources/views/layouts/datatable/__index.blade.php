@@ -165,10 +165,72 @@
                   <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
               </div>
-              <div class="modal-body">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
+              <div class="modal-body">
+                <div class="timeline timeline-3">
+                  <div class="timeline-items">
+                    <div class="timeline-item">
+                      <div class="timeline-media"><i class="fas fa-plus text-success"></i></div>
+                      <div class="timeline-content">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="text-muted"><small> 11 June 2022, 11:08 </small></span></div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="font-weight-bold text-info"> Created Item </span><br>
+                            PC Lenovo
+                          </div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-media"><i class="fas fa-minus text-danger"></i></div>
+                      <div class="timeline-content">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="text-muted"><small> 16 June 2022, 22:08 </small></span></div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="font-weight-bold"> Deleted Item </span><br>
+                            PC PBL Purbaleunyi
+                          </div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
+                      <div class="timeline-content">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="font-weight-bold"> Updated Item </span><br>
+                            PC AIO
+                          </div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary font-weight-bold">Save changes</button>
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"> Close </button>
               </div>
             </div>
           </div>
