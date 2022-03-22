@@ -55,6 +55,7 @@ Route::group([
   Route::get('delete-permanentall', 'GeneralController@delete_permanentall')->name('delete-permanentall');
   Route::get('delete/{id}', 'GeneralController@delete')->name('delete');
   Route::get('deleteall', 'GeneralController@deleteall')->name('delete-all');
+  Route::get('history', 'GeneralController@history')->name('history');
   Route::get('trash', 'GeneralController@trash')->name('trash');
   Route::resource('/', 'GeneralController')->parameters(['' => 'id']);
 });

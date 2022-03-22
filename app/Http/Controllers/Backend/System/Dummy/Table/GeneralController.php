@@ -8,6 +8,7 @@ use Redirect,Response;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\Activitylog\Models\Activity;
 
 use App\Http\Requests\Backend\System\Dummy\Table\General\StoreRequest;
 use App\Http\Requests\Backend\System\Dummy\Table\General\UpdateRequest;
@@ -62,6 +63,17 @@ class GeneralController extends Controller {
       ->make(true);
     }
     return view($this->path . 'trash', compact('data'));
+  }
+
+  public function history() {
+    $data = Activity::where('subject_type', $this->model)->orderby('updated_at', 'desc')->get();
+    if(request()->ajax()) {
+      return DataTables::of($data)
+      ->rawColumns(['description'])
+      ->addIndexColumn()
+      ->make(true);
+    }
+    return view($this->path . 'history', compact('data'));
   }
 
   public function restore($id) {

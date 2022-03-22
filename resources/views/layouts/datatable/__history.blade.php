@@ -1,4 +1,4 @@
-@extends('layouts.default', ['page' => 'trash'])
+@extends('layouts.default', ['page' => 'history'])
 
 @push('head')
 <link href="/assets/backend/plugins/custom/datatables/datatables.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
@@ -10,7 +10,7 @@
     <div class="card card-custom gutter-b card-sticky" data-card="true" id="kt_page_sticky_card">
       <div class="card-header">
         <div class="card-title">
-          <h4 class="card-label"> {{ trans('default.label.trash') }} </h4>
+          <h4 class="card-label"> {{ trans('default.label.history') }} </h4>
         </div>
         <div class="card-toolbar">
           <a id="table-refresh" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="reload" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ trans('default.label.refresh') }}"><i class="fas fa-sync-alt"></i></a>

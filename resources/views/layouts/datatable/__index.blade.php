@@ -312,7 +312,7 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <a href="{{ URL::Current() }}/histories" target="_blank"><button type="button" class="btn btn-light-primary font-weight-bold"> Show All History </button></a>
+                  <a href="{{ URL::Current() }}/history" target="_blank"><button type="button" class="btn btn-light-primary font-weight-bold"> {{ trans("default.label.show-history") }} </button></a>
                   <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"> Close </button>
                 </div>
               </div>
