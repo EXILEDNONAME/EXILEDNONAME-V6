@@ -170,9 +170,10 @@
                   <div class="timeline timeline-3">
                     <div class="timeline-items">
 
-                      @php $activity = activities($model)->take(5); @endphp
-                      @if (!empty($activity) && !empty($activity->count()))
-                      @foreach($activity as $item)
+                      @php $history = histories($model)->take(10); @endphp
+                      @if (!empty($history) && !empty($history->count()))
+                      @foreach($history as $item)
+
                       @if ($item->description == 'created')
                       @foreach($item['properties'] as $data_object)
                       <div class="timeline-item">
@@ -189,7 +190,7 @@
                             </div>
                           </div>
                           <div class="d-flex align-items-center justify-content-between">
-                            <div class="mr-2"><span class="font-weight-bold text-info"> {{ trans("default.label.item-created") }} </span><br>
+                            <div class="mr-2"><span class="font-weight-bold text-success"> {{ trans("default.label.item-created") }} </span><br>
                               @if (!empty($data_object['name']))
                               {{ $data_object['name'] }}
                               @endif
@@ -205,7 +206,9 @@
                         </div>
                       </div>
                       @endforeach
-                      @elseif ($item->description == 'updated')
+                      @endif
+
+                      @if ($item->description == 'updated')
                       <div class="timeline-item">
                         <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
                         <div class="timeline-content">
@@ -220,8 +223,8 @@
                             </div>
                           </div>
                           <div class="d-flex align-items-center justify-content-between">
-                            <div class="mr-2"><span class="font-weight-bold text-info"> {{ trans("default.label.item-updated") }} </span><br>
-                              Updated Item <b>{{ $item['properties']['old']['name'] }}</b> to <b>{{ $item['properties']['attributes']['name'] }}</b>
+                            <div class="mr-2"><span class="font-weight-bold text-warning"> {{ trans("default.label.item-updated") }} </span><br>
+                              From <b>{{ $item['properties']['old']['name'] }}</b> to <b>{{ $item['properties']['attributes']['name'] }}</b>
                             </div>
                             <div class="dropdown ml-2" data-toggle="tooltip" title="View" data-placement="left">
                               <span class="text-muted pull-right">
@@ -235,55 +238,81 @@
                       </div>
                       @endif
 
-                      @endforeach
-                      @endif
+                      @if ($item->description == 'deleted')
+                      @foreach($item['properties'] as $data_object)
                       <div class="timeline-item">
                         <div class="timeline-media"><i class="fas fa-minus text-danger"></i></div>
                         <div class="timeline-content">
                           <div class="d-flex align-items-center justify-content-between">
-                            <div class="mr-2"><span class="text-muted"><small> 16 June 2022, 22:08 </small></span></div>
+                            <div class="mr-2"><span class="text-muted"><small> {{ $item->created_at->diffForHumans() }} </small></span></div>
                             <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                              <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                              @if (!empty($item->causer->name))
+                              <span class="text-muted pull-right"><small> {{ $item->causer->name }} </small></span>
+                              @else
+                              <span class="text-muted pull-right"><small><s> {{ trans("default.label.not-found") }} </s></small></span>
+                              @endif
                             </div>
                           </div>
                           <div class="d-flex align-items-center justify-content-between">
-                            <div class="mr-2"><span class="font-weight-bold text-info"> Deleted Item </span><br>
-                              PC PBL Purbaleunyi
+                            <div class="mr-2"><span class="font-weight-bold text-danger"> {{ trans("default.label.item-deleted") }} </span><br>
+                              @if (!empty($data_object['name']))
+                              {{ $data_object['name'] }}
+                              @endif
                             </div>
-                            <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                              <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                            <div class="dropdown ml-2" data-toggle="tooltip" title="View" data-placement="left">
+                              <span class="text-muted pull-right">
+                                <small>
+                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}" target="_blank"><i class="fas fa-eye"></i></a>
+                                </small>
+                              </span>
                             </div>
                           </div>
                         </div>
                       </div>
+                      @endforeach
+                      @endif
+
+                      @if ($item->description == 'restored')
+                      @foreach($item['properties'] as $data_object)
                       <div class="timeline-item">
-                        <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
+                        <div class="timeline-media"><i class="fas fa-undo text-info"></i></div>
                         <div class="timeline-content">
                           <div class="d-flex align-items-center justify-content-between">
-                            <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
+                            <div class="mr-2"><span class="text-muted"><small> {{ $item->created_at->diffForHumans() }} </small></span></div>
                             <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                              <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                              @if (!empty($item->causer->name))
+                              <span class="text-muted pull-right"><small> {{ $item->causer->name }} </small></span>
+                              @else
+                              <span class="text-muted pull-right"><small><s> {{ trans("default.label.not-found") }} </s></small></span>
+                              @endif
                             </div>
                           </div>
                           <div class="d-flex align-items-center justify-content-between">
-                            <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
-                              PC AIO
+                            <div class="mr-2"><span class="font-weight-bold text-info"> {{ trans("default.label.item-restored") }} </span><br>
+                              @if (!empty($data_object['name']))
+                              {{ $data_object['name'] }}
+                              @endif
                             </div>
-                            <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                              <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                            <div class="dropdown ml-2" data-toggle="tooltip" title="View" data-placement="left">
+                              <span class="text-muted pull-right">
+                                <small>
+                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}" target="_blank"><i class="fas fa-eye"></i></a>
+                                </small>
+                              </span>
                             </div>
                           </div>
                         </div>
                       </div>
+                      @endforeach
+                      @endif
 
-
-
-
-
+                      @endforeach
+                      @endif
                     </div>
                   </div>
                 </div>
                 <div class="modal-footer">
+                  <a href="{{ URL::Current() }}/histories" target="_blank"><button type="button" class="btn btn-light-primary font-weight-bold"> Show All History </button></a>
                   <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"> Close </button>
                 </div>
               </div>

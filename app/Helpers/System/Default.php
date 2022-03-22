@@ -14,7 +14,7 @@ function dummy_table_generals() {
   return $items;
 }
 
-function activities($model) {
-  $items = $activity = Activity::where('subject_type', $model)->orderBy('created_at', 'desc')->get();
+function histories($model) {
+  $items = Activity::where('subject_type', $model)->orderBy('created_at', 'desc')->get();
   return $items;
 }

@@ -1,4 +1,4 @@
-@extends('layouts.default', ['page' => 'items-deleted'])
+@extends('layouts.default', ['page' => 'trash'])
 
 @push('head')
 <link href="/assets/backend/plugins/custom/datatables/datatables.bundle.css?v=7.0.5" rel="stylesheet" type="text/css" />
