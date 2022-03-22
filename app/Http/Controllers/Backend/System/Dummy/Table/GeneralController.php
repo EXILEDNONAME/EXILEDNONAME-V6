@@ -69,6 +69,9 @@ class GeneralController extends Controller {
     $data = Activity::where('subject_type', $this->model)->orderby('updated_at', 'desc')->get();
     if(request()->ajax()) {
       return DataTables::of($data)
+      ->editColumn('subjects', function($order) { if($order->properties['attributes']['name'] != null) { return $order->properties['attributes']['name']; }})
+      ->editColumn('causer_id', function($order) { return $order->causer->name; })
+      ->editColumn('updated_at', function($order) { return \Carbon\Carbon::parse($order->updated_at)->format('d F Y, H:i'); })
       ->rawColumns(['description'])
       ->addIndexColumn()
       ->make(true);
