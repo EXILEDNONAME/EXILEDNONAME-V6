@@ -160,12 +160,13 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                <h5 class="modal-title" id="exampleModalLabel"> History </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
               </div>
               <div class="modal-body">
+                <div data-scroll="true" data-height="300">
                 <div class="timeline timeline-3">
                   <div class="timeline-items">
                     <div class="timeline-item">
@@ -177,7 +178,6 @@
                             <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
                           </div>
                         </div>
-                        <hr>
                         <div class="d-flex align-items-center justify-content-between">
                           <div class="mr-2"><span class="font-weight-bold text-info"> Created Item </span><br>
                             PC Lenovo
@@ -198,7 +198,7 @@
                           </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="font-weight-bold"> Deleted Item </span><br>
+                          <div class="mr-2"><span class="font-weight-bold text-info"> Deleted Item </span><br>
                             PC PBL Purbaleunyi
                           </div>
                           <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
@@ -217,7 +217,102 @@
                           </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="font-weight-bold"> Updated Item </span><br>
+                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
+                            PC AIO
+                          </div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
+                      <div class="timeline-content">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
+                            PC AIO
+                          </div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
+                      <div class="timeline-content">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
+                            PC AIO
+                          </div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
+                      <div class="timeline-content">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
+                            PC AIO
+                          </div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
+                      <div class="timeline-content">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
+                            PC AIO
+                          </div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline-item">
+                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
+                      <div class="timeline-content">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
+                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
                             PC AIO
                           </div>
                           <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
@@ -232,6 +327,7 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"> Close </button>
               </div>
+            </div>
             </div>
           </div>
         </div>
