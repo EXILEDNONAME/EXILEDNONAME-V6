@@ -167,167 +167,126 @@
               </div>
               <div class="modal-body">
                 <div data-scroll="true" data-height="300">
-                <div class="timeline timeline-3">
-                  <div class="timeline-items">
-                    <div class="timeline-item">
-                      <div class="timeline-media"><i class="fas fa-plus text-success"></i></div>
-                      <div class="timeline-content">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="text-muted"><small> 11 June 2022, 11:08 </small></span></div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                  <div class="timeline timeline-3">
+                    <div class="timeline-items">
+
+                      @php $activity = activities($model)->take(5); @endphp
+                      @if (!empty($activity) && !empty($activity->count()))
+                      @foreach($activity as $item)
+                      @if ($item->description == 'created')
+                      @foreach($item['properties'] as $data_object)
+                      <div class="timeline-item">
+                        <div class="timeline-media"><i class="fas fa-plus text-success"></i></div>
+                        <div class="timeline-content">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-2"><span class="text-muted"><small> {{ $item->created_at->diffForHumans() }} </small></span></div>
+                            <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                              @if (!empty($item->causer->name))
+                              <span class="text-muted pull-right"><small> {{ $item->causer->name }} </small></span>
+                              @else
+                              <span class="text-muted pull-right"><small><s> {{ trans("default.label.not-found") }} </s></small></span>
+                              @endif
+                            </div>
                           </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="font-weight-bold text-info"> Created Item </span><br>
-                            PC Lenovo
-                          </div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-media"><i class="fas fa-minus text-danger"></i></div>
-                      <div class="timeline-content">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="text-muted"><small> 16 June 2022, 22:08 </small></span></div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
-                          </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="font-weight-bold text-info"> Deleted Item </span><br>
-                            PC PBL Purbaleunyi
-                          </div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
-                      <div class="timeline-content">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
-                          </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
-                            PC AIO
-                          </div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-2"><span class="font-weight-bold text-info"> {{ trans("default.label.item-created") }} </span><br>
+                              @if (!empty($data_object['name']))
+                              {{ $data_object['name'] }}
+                              @endif
+                            </div>
+                            <div class="dropdown ml-2" data-toggle="tooltip" title="View" data-placement="left">
+                              <span class="text-muted pull-right">
+                                <small>
+                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}" target="_blank"><i class="fas fa-eye"></i></a>
+                                </small>
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
-                      <div class="timeline-content">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                      @endforeach
+                      @elseif ($item->description == 'updated')
+                      <div class="timeline-item">
+                        <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
+                        <div class="timeline-content">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-2"><span class="text-muted"><small> {{ $item->created_at->diffForHumans() }} </small></span></div>
+                            <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                              @if (!empty($item->causer->name))
+                              <span class="text-muted pull-right"><small> {{ $item->causer->name }} </small></span>
+                              @else
+                              <span class="text-muted pull-right"><small><s> {{ trans("default.label.not-found") }} </s></small></span>
+                              @endif
+                            </div>
                           </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
-                            PC AIO
-                          </div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
-                      <div class="timeline-content">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
-                          </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
-                            PC AIO
-                          </div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-2"><span class="font-weight-bold text-info"> {{ trans("default.label.item-updated") }} </span><br>
+                              Updated Item <b>{{ $item['properties']['old']['name'] }}</b> to <b>{{ $item['properties']['attributes']['name'] }}</b>
+                            </div>
+                            <div class="dropdown ml-2" data-toggle="tooltip" title="View" data-placement="left">
+                              <span class="text-muted pull-right">
+                                <small>
+                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}" target="_blank"><i class="fas fa-eye"></i></a>
+                                </small>
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
-                      <div class="timeline-content">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                      @endif
+
+                      @endforeach
+                      @endif
+                      <div class="timeline-item">
+                        <div class="timeline-media"><i class="fas fa-minus text-danger"></i></div>
+                        <div class="timeline-content">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-2"><span class="text-muted"><small> 16 June 2022, 22:08 </small></span></div>
+                            <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                              <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                            </div>
                           </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
-                            PC AIO
-                          </div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
-                      <div class="timeline-content">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
-                          </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
-                            PC AIO
-                          </div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-2"><span class="font-weight-bold text-info"> Deleted Item </span><br>
+                              PC PBL Purbaleunyi
+                            </div>
+                            <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                              <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="timeline-item">
-                      <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
-                      <div class="timeline-content">
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                      <div class="timeline-item">
+                        <div class="timeline-media"><i class="fas fa-magic text-warning"></i></div>
+                        <div class="timeline-content">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-2"><span class="text-muted"><small> 11 December 2022, 22:08 </small></span></div>
+                            <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                              <span class="text-muted pull-right"><small> Naufal Haidir Ridha </small></span>
+                            </div>
                           </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                          <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
-                            PC AIO
-                          </div>
-                          <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
-                            <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="mr-2"><span class="font-weight-bold text-info"> Updated Item </span><br>
+                              PC AIO
+                            </div>
+                            <div class="dropdown ml-2" data-toggle="tooltip" title="" data-placement="left">
+                              <span class="text-muted pull-right"><small><a href="#"><i class="fas fa-eye"></i></a></small></span>
+                            </div>
                           </div>
                         </div>
                       </div>
+
+
+
+
+
                     </div>
                   </div>
                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"> Close </button>
+                </div>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"> Close </button>
-              </div>
-            </div>
             </div>
           </div>
         </div>
