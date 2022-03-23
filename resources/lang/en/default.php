@@ -5,6 +5,7 @@ return [
   'label' => [
     'index'                           => 'Index',
     'canceled'                        => 'Canceled',
+    'chart'                           => 'Chart',
     'confirm-deleteall'               => 'You will delete this selected item',
     'confirm-delete'                  => 'You will delete this item',
     'confirm-delete-permanent'        => 'You will delete permanent this item',

@@ -1,4 +1,4 @@
-@extends('layouts.datatable.__index', ['page' => 'index', 'daterange' => 'false', 'status' => 'false'])
+@extends('layouts.datatable.__index', ['page' => 'index', 'daterange' => 'false', 'status' => 'false', 'chart' => 'true'])
 @push('title', 'Table Generals')
 
 @push('table-header')

@@ -329,6 +329,23 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card card-custom gutter-b" data-card="true">
+      <div class="card-header">
+        <div class="card-title">
+          <h4 class="card-label"> {{ trans('default.label.chart') }} </h4>
+        </div>
+        <div class="card-toolbar">
+          <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ trans('default.label.minimize') }}"><i class="fas fa-caret-down"></i></a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="charts"></div>
+      </div>
+    </div>
+  </div>
+</div>
 @endpush
 
 @push('js')
@@ -710,6 +727,97 @@ var KTDatatablesExtensionsKeytable = function() {
 
 jQuery(document).ready(function() {
   KTDatatablesExtensionsKeytable.init();
+});
+</script>
+
+<script>
+"use strict";
+
+// Shared Colors Definition
+const primary = '#6993FF';
+const success = '#1BC5BD';
+const info = '#8950FC';
+const warning = '#FFA800';
+const danger = '#F64E60';
+
+// Class definition
+function generateBubbleData(baseval, count, yrange) {
+  var i = 0;
+  var series = [];
+  while (i < count) {
+    var x = Math.floor(Math.random() * (750 - 1 + 1)) + 1;;
+    var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+    var z = Math.floor(Math.random() * (75 - 15 + 1)) + 15;
+
+    series.push([x, y, z]);
+    baseval += 86400000;
+    i++;
+  }
+  return series;
+}
+
+function generateData(count, yrange) {
+  var i = 0;
+  var series = [];
+  while (i < count) {
+    var x = 'w' + (i + 1).toString();
+    var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+
+    series.push({
+      x: x,
+      y: y
+    });
+    i++;
+  }
+  return series;
+}
+
+var KTApexChartsDemo = function () {
+  // Private functions
+  var _demo1 = function () {
+    const apexChart = "#charts";
+    var created = [{{ chart_created($model) }}];
+    var updated = [{{ chart_updated($model) }}];
+    var options = {
+      series: [
+        { name: 'Created', data: created },
+        { name: 'Updated', data: updated },
+      ],
+      chart: {
+        height: 350,
+        type: 'line',
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          opacity: 0.5
+        },
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      },
+      colors: [success, warning]
+    };
+    var chart = new ApexCharts(document.querySelector(apexChart), options);
+    chart.render();
+  }
+  return {
+    init: function () {
+      _demo1();
+    }
+  };
+}();
+jQuery(document).ready(function () {
+  KTApexChartsDemo.init();
 });
 </script>
 @endpush
