@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('pages.backend.__includes.head')
+
+@if ( !empty($page) && $page == 'message' || !empty($page) && $page == 'file-manager' || !empty($page) && $page == 'profile' )
+<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading aside-minimize">
+@else
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+@endif
   @include('pages.backend.__includes.mobile-header')
 
   <div class="d-flex flex-column flex-root">

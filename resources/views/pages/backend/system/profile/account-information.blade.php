@@ -1,4 +1,4 @@
-@extends('layouts.default', ['page' => 'blank', 'page' => 'profile'])
+@extends('layouts.default', ['page' => 'profile'])
 @push('title', 'Profile')
 
 @push('body')

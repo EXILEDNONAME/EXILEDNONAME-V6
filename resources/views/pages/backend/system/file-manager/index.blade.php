@@ -1,4 +1,4 @@
-@extends('layouts.default', ['page' => 'blank'])
+@extends('layouts.default', ['page' => 'file-manager'])
 @push('title', 'File Manager')
 
 @push('head')
