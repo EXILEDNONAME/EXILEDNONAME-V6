@@ -4,6 +4,8 @@ return [
 
   'label' => [
     'index'                           => 'Index',
+    'active'                          => 'Active',
+    'back'                            => 'Back',
     'canceled'                        => 'Canceled',
     'chart'                           => 'Chart',
     'confirm-deleteall'               => 'You will delete this selected item',

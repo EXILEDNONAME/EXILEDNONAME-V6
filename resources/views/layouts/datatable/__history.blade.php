@@ -49,7 +49,7 @@
               <tr>
                 <th> No. </th>
                 <th> </th>
-                <th> Description </th>
+                <th> Status </th>
                 <th> Subject </th>
                 <th> Created By </th>
                 <th> Date </th>
@@ -192,10 +192,8 @@ var KTDatatablesExtensionsKeytable = function() {
           }
         },
         { data: 'subjects' },
-        { data: 'causer_id' },
-        { data: 'updated_at', 'className': 'align-middle', },
-
-
+        { data: 'causer_id', 'className': 'align-middle text-nowrap', 'width': '1' },
+        { data: 'updated_at', 'className': 'align-middle text-nowrap', 'width': '1' },
         {
           data: 'action', orderable: false, orderable: false, searchable: false, 'width': '1',
           render : function ( data, type, row) {

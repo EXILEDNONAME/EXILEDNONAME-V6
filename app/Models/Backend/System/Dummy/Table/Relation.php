@@ -3,9 +3,12 @@
 namespace App\Models\Backend\System\Dummy\Table;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Backend\System\Dummy\Table\General;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Relation extends Model {
+
+  use LogsActivity, SoftDeletes;
 
   protected $table = 'dummy_table_relations';
   protected $primaryKey = 'id';

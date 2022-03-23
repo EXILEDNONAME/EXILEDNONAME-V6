@@ -68,8 +68,14 @@ Route::group([
 ], function(){
   Route::get('active/{id}', 'RelationController@active')->name('active');
   Route::get('inactive/{id}', 'RelationController@inactive')->name('inactive');
+  Route::get('restore/{id}', 'RelationController@restore')->name('restore');
+  Route::get('restoreall', 'RelationController@restoreall')->name('restore-all');
+  Route::get('delete-permanent/{id}', 'RelationController@delete_permanent')->name('delete-permanent');
+  Route::get('delete-permanentall', 'RelationController@delete_permanentall')->name('delete-permanentall');
   Route::get('delete/{id}', 'RelationController@delete')->name('delete');
-  Route::get('deleteall', 'RelationController@deleteall')->name('deleteall');
+  Route::get('deleteall', 'RelationController@deleteall')->name('delete-all');
+  Route::get('history', 'RelationController@history')->name('history');
+  Route::get('trash', 'RelationController@trash')->name('trash');
   Route::resource('/', 'RelationController')->parameters(['' => 'id']);
 });
 

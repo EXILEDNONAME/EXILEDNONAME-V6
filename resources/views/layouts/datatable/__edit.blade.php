@@ -11,11 +11,11 @@
         <div class="card-toolbar">
           <a href="{{ URL::Current() }}/../../#" class="btn btn-outline-primary font-weight-bolder mr-2">
             <i class="ki ki-long-arrow-back icon-xs"></i>
-            Back
+            {{ trans('default.label.back') }}
           </a>
           <div class="btn-group">
             <button type="submit" class="btn btn-outline-primary" form="form-exilednoname">
-              <i class="flaticon2-paperplane"></i> <span class="font-weight-bolder"> Update </span>
+              <i class="flaticon2-paperplane"></i> <span class="font-weight-bolder"> {{ trans('default.label.update') }} </span>
             </button>
           </div>
         </div>
@@ -25,7 +25,7 @@
         @if ($message = Session::get('error'))
         <div class="alert alert-danger" role="alert"> {{ $message }} </div><hr>
         @endif
-        
+
         <form method="POST" id="form-exilednoname" action="{{ URL::current() }}/../../{{ $data->id }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
           {{ method_field('PATCH') }}
           {{ csrf_field() }}
@@ -62,7 +62,7 @@
 
           @if ( !empty($status) && $status == 'true')
           <div class="form-group row">
-            <label class="col-lg-3 col-form-label"> Status </label>
+            <label class="col-lg-3 col-form-label"> {{ trans('default.label.status') }} </label>
             <div class="col-lg-9">
               {{ Form::select('status', ['1' => 'Success', '2' => 'Pending', '3' => 'Delivered', '4' => 'Canceled'], (isset($data->status) ? $data->status : ''), ['class' => $errors->has('status') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) }}
               @error('status') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror

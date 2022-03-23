@@ -11,7 +11,7 @@
         <div class="card-toolbar">
           <a href="{{ URL::Current() }}/../#" class="btn btn-outline-primary font-weight-bolder mr-2">
             <i class="ki ki-long-arrow-back icon-xs"></i>
-            Back
+            {{ trans('default.label.back') }}
           </a>
           <a data-toggle="modal" class="btn btn-icon btn-outline-primary mr-2" data-target="#qrcode_modal"><i class="fas fa-qrcode"></i></a>
           <a data-toggle="modal" class="btn btn-icon btn-outline-primary mr-2" onclick="printData('printData')"><i class="fas fa-print"></i></a>
@@ -59,7 +59,7 @@
               @endif
               @stack('content-body')
               <tr>
-                <td class="align-middle font-weight-bold"> Active </td>
+                <td class="align-middle font-weight-bold"> {{ trans('default.label.active') }} </td>
                 <td class="align-middle">
                   @if ( $data->active == 1 ) Yes
                   @else No
@@ -78,11 +78,21 @@
               @endif
               <tr>
                 <td class="align-middle font-weight-bold"> Created By </td>
-                <td class="align-middle"> {{ \DB::table('users')->where('id', $data->created_by)->first()->name }} </td>
+                <td class="align-middle">
+                  @if ($data->created_by == 0 || $data->created_by == NULL)
+                  @else
+                  {{ \DB::table('users')->where('id', $data->created_by)->first()->name }}
+                  @endif
+                </td>
               </tr>
               <tr>
                 <td class="align-middle font-weight-bold"> Updated By </td>
-                <td class="align-middle"> {{ \DB::table('users')->where('id', $data->updated_by)->first()->name }} </td>
+                <td class="align-middle">
+                  @if ($data->updated_by == 0 || $data->updated_by == NULL)
+                  @else
+                  {{ \DB::table('users')->where('id', $data->updated_by)->first()->name }}
+                  @endif
+                </td>
               </tr>
               <tr>
                 <td class="align-middle font-weight-bold"> Created At </td>

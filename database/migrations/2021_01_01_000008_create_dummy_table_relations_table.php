@@ -11,7 +11,6 @@ class CreateDummyTableRelationsTable extends Migration {
       $table->integer('id_general')->unsigned();
       $table->timestamp('date_start')->nullable();
       $table->timestamp('date_end')->nullable();
-      $table->string('name');
       $table->text('description')->nullable();
       $table->integer('active')->default(1);
       $table->integer('sort')->default(1);
@@ -20,6 +19,7 @@ class CreateDummyTableRelationsTable extends Migration {
       $table->integer('updated_by')->nullable()->default('0');
       $table->foreign('id_general')->references('id')->on('dummy_table_generals')->onDelete('restrict')->onUpdate('restrict');
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 
