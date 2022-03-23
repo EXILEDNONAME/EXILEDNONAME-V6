@@ -66,10 +66,6 @@
                   @endif
                 </td>
               </tr>
-              <!-- <tr>
-                <td width="50%" class="align-middle font-weight-bold"> Sort </td>
-                <td class="align-middle"> {!! $data->sort !!} </td>
-              </tr> -->
               @if ( !empty($status) && $status == 'true')
               <tr>
                 <td class="align-middle font-weight-bold"> Status </td>
@@ -80,6 +76,14 @@
                 </td>
               </tr>
               @endif
+              <tr>
+                <td class="align-middle font-weight-bold"> Created By </td>
+                <td class="align-middle"> {!! $data->created_by !!} </td>
+              </tr>
+              <tr>
+                <td class="align-middle font-weight-bold"> Updated By </td>
+                <td class="align-middle"> {!! $data->updated_by !!} </td>
+              </tr>
               <tr>
                 <td class="align-middle font-weight-bold"> Created At </td>
                 <td class="align-middle"> {!! \Carbon\Carbon::parse($data->created_at)->format('d F Y, H:i') !!} </td>

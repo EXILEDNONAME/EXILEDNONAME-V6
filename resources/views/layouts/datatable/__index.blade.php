@@ -307,13 +307,17 @@
                       @endif
 
                       @endforeach
+                      @else
+                      {{ trans("default.label.no-recent-history") }} ...
                       @endif
                     </div>
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <a href="{{ URL::Current() }}/history" target="_blank"><button type="button" class="btn btn-light-primary font-weight-bold"> {{ trans("default.label.show-history") }} </button></a>
-                  <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"> Close </button>
+                  @if (!empty($history) && !empty($history->count()))
+                  <a href="{{ URL::Current() }}/history"><button type="button" class="btn btn-light-primary font-weight-bold"> {{ trans("default.label.show-all-history") }} </button></a>
+                  @endif
+                  <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"> {{ trans("default.label.close") }} </button>
                 </div>
               </div>
             </div>

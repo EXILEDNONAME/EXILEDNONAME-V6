@@ -39,44 +39,27 @@
             </div>
           </div>
           <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ trans('default.label.minimize') }}"><i class="fas fa-caret-down"></i></a>
-          <div class="collapse" id="toolbar_default">
-            <a data-url="" class="restoreall btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="tooltip" title="{{ trans('default.label.restoreall-selected') }}"><i class="text-success fas fa-undo"></i></a>
-            <a data-url="" class="deletepermanent-all btn btn-sm btn-icon btn-clean btn-icon-md" data-toggle="tooltip" title="{{ trans('default.label.deleteall-permanently-selected') }}"><i class="text-danger fas fa-trash"></i></a>
-          </div>
         </div>
       </div>
 
       <div class="card-body">
-
-        @if ($message = Session::get('success'))
-        <div id="toast-container" class="toast-bottom-right">
-          <div class="toast toast-success" aria-live="polite">
-            <div class="toast-message">{{ $message }}</div>
-          </div>
-        </div>
-        @endif
-
-        @if ($message = Session::get('error'))
-        <div id="toast-container" class="toast-bottom-right">
-          <div class="toast toast-error" aria-live="polite">
-            <div class="toast-message">{{ $message }}</div>
-          </div>
-        </div>
-        @endif
         <div class="table-responsive">
           <table width="100%" class="table table-striped-table-bordered table-hover table-checkable" id="exilednoname">
             <thead>
               <tr>
-                <th class="no-export"> </th>
                 <th> No. </th>
+                <th> Date </th>
+                <th> Created By </th>
+                <th> Description </th>
+                <th> Subject </th>
                 @stack('table-header')
                 <th class="no-export"> </th>
               </tr>
             </thead>
           </table>
         </div>
-
       </div>
+
     </div>
   </div>
 </div>
@@ -108,13 +91,6 @@ var KTDatatablesExtensionsKeytable = function() {
         selector: 'td:first-child .checkable',
       },
       ajax: { url: "{{ URL::current() }}", },
-      headerCallback: function(thead, data, start, end, display) {
-        thead.getElementsByTagName('th')[0].innerHTML = `
-        <label class="checkbox checkbox-single checkbox-solid checkbox-primary mb-0">
-        <input type="checkbox" value="" class="group-checkable"/>
-        <span></span>
-        </label>`;
-      },
       "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
       buttons: [
         {
@@ -189,247 +165,39 @@ var KTDatatablesExtensionsKeytable = function() {
       ],
       columns: [
         {
-          data: 'checkbox', orderable: false, orderable: false, searchable: false, 'width': '1',
-          render : function ( data, type, row, meta) { return '<label class="checkbox checkbox-single checkbox-primary mb-0"><input type="checkbox" data-id="' + row.id + '" class="checkable"><span></span></label>'; },
-        },
-        {
           data: 'autonumber', orderable: false, orderable: false, searchable: false, 'width': '1',
           render: function (data, type, row, meta) {
             return meta.row + meta.settings._iDisplayStart + 1;
           }
         },
-        @stack('table-body')
+        { data: 'updated_at', 'className': 'align-middle', },
+        { data: 'causer_id' },
+        {
+          data: 'description', orderable: true, 'className': 'align-middle',
+          render: function ( data, type, row ) {
+            if ( data == 'created' ) { return 'Item Created'; }
+            else if ( data == 'updated' ) { return 'Item Updated'; }
+            else if ( data == 'deleted' ) { return 'Item Deleted'; }
+            else if ( data == 'restored' ) { return 'Item Restored'; }
+            else { return ''; }
+          }
+        },
+        { data: 'subjects' },
         {
           data: 'action', orderable: false, orderable: false, searchable: false, 'width': '1',
           render : function ( data, type, row) {
-            return ''+
-            '<div class="dropdown dropdown-inline">'+
-            '<button type="button" class="btn btn-hover-light-dark btn-icon btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ki ki-bold-more-ver"></i></button>'+
-            '<div class="dropdown-menu dropdown-menu-xs" style=""><ul class="navi navi-hover py-5">'+
-            '<li class="navi-item"><a href="javascript:void(0);" class="navi-link" data-id="' + row.id + '" id="restore"><span class="navi-icon"><i class="flaticon2-expand"></i></span><span class="navi-text">{{ trans("default.label.restore") }}</span></a></li>'+
-            '<li class="navi-item"><a href="javascript:void(0);" class="navi-link" data-id="' + row.id + '" id="delete_permanent"><span class="navi-icon"><i class="text-danger fas fa-trash"></i></span><span class="navi-text">{{ trans("default.label.delete") }}</span></a></li>';
+            return '<a href="{{ URL::Current() }}/../' + row.subject_id + '" class="navi-link" target="_blank"><span class="navi-icon"><i class="fas fa-eye"></i></span><span class="navi-text"></span></a>';
           },
         },
-      ],
-      order: [[1, 'asc']]
+      ]
     });
 
-    // FILTER
-    @stack('filter-body')
-    // END FILTER
-
-    $('#reset').click(function(){
-      table.search( '' ).columns().search( '' ).draw();
-    });
-
-    $("#table-refresh").on("click", function() {
-      $('#toolbar_default').collapse('hide');
-      table.ajax.reload();
-    });
+    $("#table-refresh").on("click", function() { table.ajax.reload(); });
     $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });
     $('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
     $('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
     $('#export_csv').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
     $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(4).trigger(); });
-
-    table.on('change', '.group-checkable', function() {
-      var set = $(this).closest('table').find('td:first-child .checkable');
-      var checked = $(this).is(':checked');
-      $(set).each(function() {
-        if (checked) {
-          $(this).prop('checked', true);
-          table.rows($(this).closest('tr')).select();
-          var checkedNodes = table.rows('.selected').nodes();
-          var count = checkedNodes.length;
-          $('#kt_datatable_selected_records').html(count);
-          if (count > 0) { $('#toolbar_default').collapse('show'); }
-        }
-        else {
-          $(this).prop('checked', false);
-          table.rows($(this).closest('tr')).deselect();
-          $('#toolbar_default').collapse('hide');
-        }
-      });
-    });
-
-    table.on('change', '.checkable', function() {
-      var checkedNodes = table.rows('.selected').nodes();
-      var count = checkedNodes.length;
-      $('#kt_datatable_selected_records').html(count);
-      if (count > 0) { $('#toolbar_default').collapse('show'); }
-      else { $('#toolbar_default').collapse('hide'); }
-    });
-
-    $('body').on('click', '#restore', function () {
-      var id = $(this).data("id");
-      Swal.fire({
-        title: "Are you sure?",
-        text: "{{ trans('default.label.confirm-restore') }}",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
-        reverseButtons: false
-      }).then(function(result) {
-        if (result.value) {
-          $.ajax({
-            type: "get",
-            url: "{{ URL::current() }}/../restore/"+id,
-            processing: true,
-            serverSide: true,
-            success: function (data) {
-              var oTable = $('#exilednoname').dataTable();
-              oTable.fnDraw(false);
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.success("{{ trans('default.notification.success.restore') }}");
-            },
-            error: function (data) {
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.error("{{ trans('default.notification.error.restrict') }}!");
-            }
-          });
-        }
-      });
-    });
-
-    $('.restoreall').on('click', function(e) {
-      var exilednonameArr = [];
-      $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
-      var strEXILEDNONAME = exilednonameArr.join(",");
-      Swal.fire({
-        title: "Are you sure?",
-        text: "{{ trans('default.label.confirm-restoreall') }}",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
-        reverseButtons: false
-      }).then(function(result) {
-        if (result.value) {
-          $.ajax({
-            url: "{{ URL::current() }}/../restoreall",
-            type: 'get',
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data: 'EXILEDNONAME='+strEXILEDNONAME,
-            success: function (data) {
-              var oTable = $('#exilednoname').dataTable();
-              $('#toolbar_default').collapse('hide');
-              oTable.fnDraw(false);
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.success("{{ trans('default.notification.success.delete-permanentall-selected') }}");
-            },
-            error: function (data) {
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.error("{{ trans('default.notification.error.restrict') }}!");
-            }
-          });
-        }
-      });
-    });
-
-    $('body').on('click', '#delete_permanent', function () {
-      var id = $(this).data("id");
-      Swal.fire({
-        title: "Are you sure?",
-        text: "{{ trans('default.label.confirm-delete-permanent') }}",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
-        reverseButtons: false
-      }).then(function(result) {
-        if (result.value) {
-          $.ajax({
-            type: "get",
-            url: "{{ URL::current() }}/../delete-permanent/"+id,
-            processing: true,
-            serverSide: true,
-            success: function (data) {
-              var oTable = $('#exilednoname').dataTable();
-              oTable.fnDraw(false);
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.success("{{ trans('default.notification.success.active') }}");
-            },
-            error: function (data) {
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.error("{{ trans('default.notification.error.restrict') }}!");
-            }
-          });
-        }
-      });
-    });
-
-    $('.deletepermanent-all').on('click', function(e) {
-      var exilednonameArr = [];
-      $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
-      var strEXILEDNONAME = exilednonameArr.join(",");
-      Swal.fire({
-        title: "Are you sure?",
-        text: "{{ trans('default.label.confirm-delete-permanentall') }}",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
-        reverseButtons: false
-      }).then(function(result) {
-        if (result.value) {
-          $.ajax({
-            url: "{{ URL::current() }}/../delete-permanentall",
-            type: 'get',
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data: 'EXILEDNONAME='+strEXILEDNONAME,
-            success: function (data) {
-              var oTable = $('#exilednoname').dataTable();
-              $('#toolbar_default').collapse('hide');
-              oTable.fnDraw(false);
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.success("{{ trans('default.notification.success.delete-permanentall-selected') }}");
-            },
-            error: function (data) {
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.error("{{ trans('default.notification.error.restrict') }}!");
-            }
-          });
-        }
-      });
-    });
-
-    $('body').on('click', '.delete', function () {
-      var id = $(this).data("id");
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You will permanently delete this item",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
-        reverseButtons: false
-      }).then(function(result) {
-        if (result.value) {
-          $.ajax({
-            type: "get",
-            url: "{{ URL::current() }}/delete/"+id,
-            success: function (data) {
-              var oTable = $('#exilednoname').dataTable();
-              oTable.fnDraw(false);
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.success("{{ trans('default.notification.success.delete') }}");
-            },
-            error: function (data) {
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.error("{{ trans('default.notification.error.restrict') }}!");
-            }
-          });
-        }
-      });
-    });
-
-    $('body').on('click', '#delete', function () {
-      var id = $(this).data("id");
-      if(confirm("Are You sure want to delete !")){
-
-      }
-    });
 
   };
 
