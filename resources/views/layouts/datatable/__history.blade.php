@@ -48,10 +48,11 @@
             <thead>
               <tr>
                 <th> No. </th>
-                <th> Date </th>
-                <th> Created By </th>
+                <th> </th>
                 <th> Description </th>
                 <th> Subject </th>
+                <th> Created By </th>
+                <th> Date </th>
                 @stack('table-header')
                 <th class="no-export"> </th>
               </tr>
@@ -170,19 +171,31 @@ var KTDatatablesExtensionsKeytable = function() {
             return meta.row + meta.settings._iDisplayStart + 1;
           }
         },
-        { data: 'updated_at', 'className': 'align-middle', },
-        { data: 'causer_id' },
+        {
+          data: 'description', orderable: false, 'className': 'align-middle', 'width': '1',
+          render: function ( data, type, row ) {
+            if ( data == 'created' ) { return '<span class="label label-dot label-success"></span>'; }
+            else if ( data == 'updated' ) { return '<span class="label label-dot label-warning"></span>'; }
+            else if ( data == 'deleted' ) { return '<span class="label label-dot label-danger"></span>'; }
+            else if ( data == 'restored' ) { return '<span class="label label-dot label-info"></span>'; }
+            else { return ''; }
+          }
+        },
         {
           data: 'description', orderable: true, 'className': 'align-middle',
           render: function ( data, type, row ) {
-            if ( data == 'created' ) { return 'Item Created'; }
-            else if ( data == 'updated' ) { return 'Item Updated'; }
-            else if ( data == 'deleted' ) { return 'Item Deleted'; }
-            else if ( data == 'restored' ) { return 'Item Restored'; }
+            if ( data == 'created' ) { return 'Created'; }
+            else if ( data == 'updated' ) { return 'Updated'; }
+            else if ( data == 'deleted' ) { return 'Deleted'; }
+            else if ( data == 'restored' ) { return 'Restored'; }
             else { return ''; }
           }
         },
         { data: 'subjects' },
+        { data: 'causer_id' },
+        { data: 'updated_at', 'className': 'align-middle', },
+
+
         {
           data: 'action', orderable: false, orderable: false, searchable: false, 'width': '1',
           render : function ( data, type, row) {
