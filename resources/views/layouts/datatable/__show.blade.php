@@ -78,11 +78,11 @@
               @endif
               <tr>
                 <td class="align-middle font-weight-bold"> Created By </td>
-                <td class="align-middle"> {!! $data->created_by !!} </td>
+                <td class="align-middle"> {{ \DB::table('users')->where('id', $data->created_by)->first()->name }} </td>
               </tr>
               <tr>
                 <td class="align-middle font-weight-bold"> Updated By </td>
-                <td class="align-middle"> {!! $data->updated_by !!} </td>
+                <td class="align-middle"> {{ \DB::table('users')->where('id', $data->updated_by)->first()->name }} </td>
               </tr>
               <tr>
                 <td class="align-middle font-weight-bold"> Created At </td>

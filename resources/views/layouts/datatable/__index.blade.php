@@ -22,7 +22,7 @@
             <a id="table-filter-hide" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="reload" data-toggle="tooltip" data-placement="top" title="" data-original-title="Filter Hide"><i class="fas fa-filter"></i></a>
           </div>
 
-          <a class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-toggle="modal" rel="tooltip" data-target="#exampleModalCenter" data-original-title="Show History"><i class="fas fa-history"></i></a>
+          <a class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-toggle="modal" rel="tooltip" data-target="#ModalHistory" data-original-title="Show History"><i class="fas fa-history"></i></a>
 
           <div class="dropdown dropdown-inline">
             <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -156,7 +156,7 @@
           </table>
         </div>
 
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="ModalHistory" tabindex="-1" role="dialog" aria-labelledby="ModalHistoryLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -198,7 +198,7 @@
                             <div class="dropdown ml-2" data-toggle="tooltip" title="View" data-placement="left">
                               <span class="text-muted pull-right">
                                 <small>
-                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}" target="_blank"><i class="fas fa-eye"></i></a>
+                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}"><i class="fas fa-eye"></i></a>
                                 </small>
                               </span>
                             </div>
@@ -229,7 +229,7 @@
                             <div class="dropdown ml-2" data-toggle="tooltip" title="View" data-placement="left">
                               <span class="text-muted pull-right">
                                 <small>
-                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}" target="_blank"><i class="fas fa-eye"></i></a>
+                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}"><i class="fas fa-eye"></i></a>
                                 </small>
                               </span>
                             </div>
@@ -262,7 +262,7 @@
                             <div class="dropdown ml-2" data-toggle="tooltip" title="View" data-placement="left">
                               <span class="text-muted pull-right">
                                 <small>
-                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}" target="_blank"><i class="fas fa-eye"></i></a>
+                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}"><i class="fas fa-eye"></i></a>
                                 </small>
                               </span>
                             </div>
@@ -296,7 +296,7 @@
                             <div class="dropdown ml-2" data-toggle="tooltip" title="View" data-placement="left">
                               <span class="text-muted pull-right">
                                 <small>
-                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}" target="_blank"><i class="fas fa-eye"></i></a>
+                                  <a href="{{ URL::Current() }}/{{ $item->subject_id }}"><i class="fas fa-eye"></i></a>
                                 </small>
                               </span>
                             </div>
