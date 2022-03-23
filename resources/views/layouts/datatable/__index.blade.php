@@ -329,6 +329,8 @@
   </div>
 </div>
 
+
+@if ( !empty($chart) && $chart == 'true')
 <div class="row">
   <div class="col-lg-12">
     <div class="card card-custom gutter-b" data-card="true">
@@ -346,6 +348,8 @@
     </div>
   </div>
 </div>
+@endif
+
 @endpush
 
 @push('js')
