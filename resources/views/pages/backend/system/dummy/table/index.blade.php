@@ -7,7 +7,7 @@
       <div class="card-body" style="">
         <center>
           <a href="{{ URL::Current() }}/generals" class="text-info"><b> GENERALS </b></a><br>
-          <span class="text-danger"> {{ \DB::table('dummy_table_generals')->get()->count() }} </span>
+          <span class="text-danger"><a href="{{ URL::Current() }}/generals" class="text-danger"><b> {{ \DB::table('dummy_table_generals')->get()->count() }} </b></a> items </span>
         </center>
       </div>
     </div>
